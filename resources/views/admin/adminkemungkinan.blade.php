@@ -58,14 +58,14 @@
 					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
 					</a></li>
-					<li><a class="" href="{{route('admin.master.kemungkinan')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Kemungkinan
+					<li><a class="" href="{{route('admin.master.actionplan')}}">
+						<span class="fa fa-arrow-right">&nbsp;</span> Action Plan
 					</a></li>
-					<li><a class="" href="{{route('admin.master.dampak')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Dampak
+					<li><a class="" href="{{route('admin.master.program')}}">
+						<span class="fa fa-arrow-right">&nbsp;</span> Program
 					</a></li>
-					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
+					<li><a class="" href="{{route('admin.master.masterresiko')}}">
+						<span class="fa fa-arrow-right">&nbsp;</span> Resiko
 					</a></li>
 				</ul>
 			</li>
@@ -134,21 +134,7 @@
 					  </div>
 					</div>
 
-			</div><!--/.row-->
-			{{-- <div class="modal fade bs-example-modal-sm" tabindex="-1" id="myModal">
-			  <div class="modal-dialog modal-sm">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-			        <h4 class="modal-title" id="mySmallModalLabel">Codes &amp; Company</h4>
-			      </div>
-			      <div class="modal-body">
-			        <input type="text" id="code" readonly />
-			        <input type="text" id="company" readonly />
-			      </div>
-			    </div>
-			  </div>
-			</div> --}}
+			</div>
 
 			<div class="row">
 					<div class="col-sm-12">

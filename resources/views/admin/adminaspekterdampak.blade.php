@@ -57,14 +57,14 @@
 					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
 					</a></li>
-					<li><a class="" href="{{route('admin.master.kemungkinan')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Kemungkinan
+					<li><a class="" href="{{route('admin.master.actionplan')}}">
+						<span class="fa fa-arrow-right">&nbsp;</span> Action Plan
 					</a></li>
-					<li><a class="" href="{{route('admin.master.dampak')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Dampak
+					<li><a class="" href="{{route('admin.master.program')}}">
+						<span class="fa fa-arrow-right">&nbsp;</span> Program
 					</a></li>
-					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
+					<li><a class="" href="{{route('admin.master.masterresiko')}}">
+						<span class="fa fa-arrow-right">&nbsp;</span> Resiko
 					</a></li>
 				</ul>
 			</li>
@@ -107,7 +107,7 @@
 					        <tr>
 										<th>ID</th>
 										<th>Nama Dampak</th>
-										<th>Delete</th>
+										<th>Edit</th>
 					        </tr>
 					      </thead>
 					    </table>
@@ -119,9 +119,11 @@
 										<tr>
 											<td>{{$d->id_aspek_terdampak}}</td>
 											<td>{{$d->nama_aspek_terdampak}}</td>
-											<td class="action-buttons"><a href="#" class="trash">
-												<em class="fa fa-xl fa-trash"></em>
-											</a></td>
+											<td class="action-buttons">
+												<a href="#myModal" data-toggle="modal" data-code="{{$d->id_aspek_terdampak}}">
+												  <i class="fa fa-xl fa-pencil-square-o"></i>
+												</a>
+											</td>
 										</tr>
 									@endforeach
 					      </tbody>
@@ -130,6 +132,32 @@
 					</div>
 
 			</div><!--/.row-->
+
+			<div class="row">
+					<div class="col-sm-12">
+						<div class="modal fade bs-example-modal-sm" tabindex="-1" id="myModal">
+						<!-- Modal content -->
+						<div class="modal-content">
+							<span class="close">&times;</span>
+
+							<form class="form-horizontal" action='{{route('admin.master.aspekterdampak.edit')}}' method='post'>
+									{{ csrf_field() }}
+									<div class="form-group">
+											<label for="nama_aspek_terdampak" class="col-md-4 control-label">Nama Aspek Terdampak</label>
+
+											<div class="col-md-6">
+													<input id="nama_aspek_terdampak" type="text" class="form-control" name="nama_aspek_terdampak" required autofocus>
+											</div>
+									</div>
+
+									<input id="code" type='text' name='id_aspek_terdampak' />
+									<input class='btn btn-success' type='submit' value='Submit' />
+							</form>
+						</div>
+				</div>
+			</div>
+			</div>
+
 			<br>
 			<div class="row">
 				<div class="col-sm-12">
@@ -146,6 +174,7 @@
 	<script type="text/javascript" src="{{ asset('js/easypiechart-data.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/modal.js') }}"></script>
 	<script>
 		window.onload = function () {
 			var chart1 = document.getElementById("line-chart").getContext("2d");
