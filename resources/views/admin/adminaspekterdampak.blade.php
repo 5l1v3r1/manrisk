@@ -3,12 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>View Users</title>
+	<title>Master Aspek Terdampak</title>
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/datepicker3.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/table.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/modal.css') }}" rel="stylesheet" type="text/css">
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]>
@@ -168,11 +168,6 @@
 
 	<script type="text/javascript" src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/chart.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/chart-data.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/easypiechart.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/easypiechart-data.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/modal.js') }}"></script>
 	<script>

@@ -3,12 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>View Users</title>
+	<title>Master Dampak</title>
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/datepicker3.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/table.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/modal.css') }}" rel="stylesheet" type="text/css">
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]>
@@ -108,7 +108,7 @@
 										<th>ID</th>
 										<th>Nama Dampak</th>
 										<th>Skor Dampak</th>
-										<th>Delete</th>
+										<th>Edit</th>
 					        </tr>
 					      </thead>
 					    </table>
@@ -121,9 +121,11 @@
 											<td>{{$d->id_dampak}}</td>
 											<td>{{$d->nama_dampak}}</td>
 											<td>{{$d->skor_dampak}}</td>
-											<td class="action-buttons"><a href="#" class="trash">
-												<em class="fa fa-xl fa-trash"></em>
-											</a></td>
+											<td class="action-buttons">
+												<a href="#myModal" data-toggle="modal" data-code="{{$d->id_dampak}}">
+												  <i class="fa fa-xl fa-pencil-square-o"></i>
+												</a>
+											</td>
 										</tr>
 									@endforeach
 					      </tbody>
@@ -132,6 +134,39 @@
 					</div>
 
 			</div><!--/.row-->
+
+			<div class="row">
+					<div class="col-sm-12">
+						<div class="modal fade bs-example-modal-sm" tabindex="-1" id="myModal">
+						<!-- Modal content -->
+						<div class="modal-content">
+							<span class="close">&times;</span>
+
+							<form class="form-horizontal" action='{{route('admin.master.dampak.edit')}}' method='post'>
+									{{ csrf_field() }}
+									<div class="form-group">
+											<label for="nama_dampak" class="col-md-4 control-label">Nama dampak</label>
+
+											<div class="col-md-6">
+													<input id="nama_dampak" type="text" class="form-control" name="nama_dampak" required autofocus>
+											</div>
+									</div>
+									<div class="form-group">
+											<label for="skor_dampak" class="col-md-4 control-label">Skor dampak</label>
+
+											<div class="col-md-6">
+													<input id="skor_dampak" type="text" class="form-control" name="skor_dampak" required autofocus>
+											</div>
+									</div>
+
+									<input id="code" type='text' name='id_dampak' />
+									<input class='btn btn-success' type='submit' value='Submit' />
+							</form>
+						</div>
+				</div>
+			</div>
+			</div>
+
 			<br>
 			<div class="row">
 				<div class="col-sm-12">
@@ -142,12 +177,8 @@
 
 	<script type="text/javascript" src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/chart.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/chart-data.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/easypiechart.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/easypiechart-data.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/modal.js') }}"></script>
 	<script>
 		window.onload = function () {
 			var chart1 = document.getElementById("line-chart").getContext("2d");

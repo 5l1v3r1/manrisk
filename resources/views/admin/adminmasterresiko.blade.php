@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Master Kemungkinan</title>
+	<title>Master Resiko</title>
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
@@ -89,13 +89,13 @@
 					<em class="fa fa-home"></em>
 				</a></li>
 				<li>Master</li>
-				<li class="active">Kemungkinan</li>
+				<li class="active">Dampak</li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Kemungkinan Terjadi</h1>
+				<h1 class="page-header">Dampak</h1>
 			</div>
 		</div><!--/.row-->
 
@@ -106,8 +106,8 @@
 					      <thead>
 					        <tr>
 										<th>ID</th>
-										<th>Nama Kemungkinan</th>
-										<th>Skor Kemungkinan</th>
+										<th>Nama Dampak</th>
+										<th>Skor Dampak</th>
 										<th>Edit</th>
 					        </tr>
 					      </thead>
@@ -118,11 +118,11 @@
 					      <tbody>
 									@foreach ($data as $d)
 										<tr>
-											<td>{{$d->id_kemungkinan}}</td>
-											<td>{{$d->nama_kemungkinan}}</td>
-											<td>{{$d->skor_kemungkinan}}</td>
+											<td>{{$d->id_dampak}}</td>
+											<td>{{$d->nama_dampak}}</td>
+											<td>{{$d->skor_dampak}}</td>
 											<td class="action-buttons">
-												<a href="#myModal" data-toggle="modal" data-code="{{$d->id_kemungkinan}}">
+												<a href="#myModal" data-toggle="modal" data-code="{{$d->id_dampak}}">
 												  <i class="fa fa-xl fa-pencil-square-o"></i>
 												</a>
 											</td>
@@ -133,7 +133,7 @@
 					  </div>
 					</div>
 
-			</div>
+			</div><!--/.row-->
 
 			<div class="row">
 					<div class="col-sm-12">
@@ -142,24 +142,24 @@
 						<div class="modal-content">
 							<span class="close">&times;</span>
 
-							<form class="form-horizontal" action='{{route('admin.master.kemungkinan.edit')}}' method='post'>
+							<form class="form-horizontal" action='{{route('admin.master.dampak.edit')}}' method='post'>
 									{{ csrf_field() }}
 									<div class="form-group">
-											<label for="nama_kemungkinan" class="col-md-4 control-label">Nama kemungkinan</label>
+											<label for="nama_dampak" class="col-md-4 control-label">Nama dampak</label>
 
 											<div class="col-md-6">
-													<input id="nama_kemungkinan" type="text" class="form-control" name="nama_kemungkinan" required autofocus>
+													<input id="nama_dampak" type="text" class="form-control" name="nama_dampak" required autofocus>
 											</div>
 									</div>
 									<div class="form-group">
-											<label for="skor_kemungkinan" class="col-md-4 control-label">Skor kemungkinan</label>
+											<label for="skor_dampak" class="col-md-4 control-label">Skor dampak</label>
 
 											<div class="col-md-6">
-													<input id="skor_kemungkinan" type="text" class="form-control" name="skor_kemungkinan" required autofocus>
+													<input id="skor_dampak" type="text" class="form-control" name="skor_dampak" required autofocus>
 											</div>
 									</div>
 
-									<input id="code" type='text' name='id_kemungkinan' />
+									<input id="code" type='text' name='id_dampak' />
 									<input class='btn btn-success' type='submit' value='Submit' />
 							</form>
 						</div>
@@ -169,13 +169,11 @@
 
 			<br>
 			<div class="row">
-					<div class="col-sm-12">
-							<p class="back-link">Risk Mangement <a href="https://www.unair.ac.id">Airlangga University</a></p>
+				<div class="col-sm-12">
+					<p class="back-link">Risk Mangement <a href="https://www.unair.ac.id">Airlangga University</a></p>
 				</div>
 			</div>
 	</div>	<!--/.main-->
-
-
 
 	<script type="text/javascript" src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>

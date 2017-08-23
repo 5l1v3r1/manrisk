@@ -43,7 +43,7 @@ class AdminController extends Controller
     public function showActionPlan()
     {
         $data = ACTIONPLAN::all();
-        return view('admin.actionplan', compact('data'));
+        return view('admin.adminactionplan', compact('data'));
     }
 
     public function editActionPlan(Request $req)
@@ -57,7 +57,7 @@ class AdminController extends Controller
     public function showProgram()
     {
         $data = JUDULPROGRAM::all();
-        //return view('admin.actionplan', compact('data'));
+        return view('admin.adminprogram', compact('data'));
     }
 
     public function editProgram(Request $req)
@@ -71,7 +71,7 @@ class AdminController extends Controller
     public function showMasterResiko()
     {
         $data = MASTERRESIKO::all();
-        //return view('admin.actionplan', compact('data'));
+        return view('admin.adminmasterresiko', compact('data'));
     }
 
     public function editMasterResiko(Request $req)

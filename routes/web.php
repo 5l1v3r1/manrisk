@@ -23,9 +23,6 @@ Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 
-    Route::get('/actionplan', 'AdminController@showActionPlan');
-    Route::post('/actionplan', 'AdminController@editActionPlan')->name('admin.ap.edit');
-
     Route::get('/users', 'AdminController@showUsers')->name('admin.users');
     Route::post('/users', 'AdminController@deleteUser')->name('admin.users.delete');
 
@@ -39,8 +36,14 @@ Route::prefix('admin')->group(function(){
     Route::post('/master/aspekterdampak', 'AdminController@editAspekTerdampak')->name('admin.master.aspekterdampak.edit');
 
     Route::get('/master/actionplan', 'AdminController@showActionPlan')->name('admin.master.actionplan');
+    Route::post('/master/actionplan', 'AdminController@editActionPlan')->name('admin.master.actionplan.edit');
+
     Route::get('/master/program', 'AdminController@showProgram')->name('admin.master.program');
+    Route::post('/master/program', 'AdminController@editProgram')->name('admin.master.program.edit');
+
     Route::get('/master/resiko', 'AdminController@showMasterResiko')->name('admin.master.resiko');
+    Route::post('/master/resiko', 'AdminController@editMasterResiko')->name('admin.master.resiko.edit');
+
     Route::get('/resiko', 'AdminController@showResiko')->name('admin.resiko');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
