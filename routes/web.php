@@ -31,6 +31,9 @@ Route::prefix('admin')->group(function(){
     Route::post('/master/kemungkinan', 'AdminController@editKemungkinan')->name('admin.master.kemungkinan.edit');
     Route::get('/master/dampak', 'AdminController@showDampak')->name('admin.master.dampak');
     Route::get('/master/aspekterdampak', 'AdminController@showAspekTerdampak')->name('admin.master.aspekterdampak');
+    Route::get('/master/actionplan', 'AdminController@showActionPlan')->name('admin.master.actionplan');
+    Route::get('/master/program', 'AdminController@showProgram')->name('admin.master.program');
+    Route::get('/master/resiko', 'AdminController@showMasterResiko')->name('admin.master.resiko');
     Route::get('/resiko', 'AdminController@showResiko')->name('admin.resiko');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });

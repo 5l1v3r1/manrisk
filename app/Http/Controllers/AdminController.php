@@ -38,8 +38,20 @@ class AdminController extends Controller
 
     public function showActionPlan()
     {
-        $ap = ACTIONPLAN::all();
-        return view('admin.actionplan', compact('ap'));
+        $data = ACTIONPLAN::all();
+        return view('admin.actionplan', compact('data'));
+    }
+
+    public function showProgram()
+    {
+        $data = ACTIONPLAN::all();
+        return view('admin.actionplan', compact('data'));
+    }
+
+    public function showMasterResiko()
+    {
+        $data = ACTIONPLAN::all();
+        return view('admin.actionplan', compact('data'));
     }
 
     // public function editActionPlan()

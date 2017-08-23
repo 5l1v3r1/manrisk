@@ -58,6 +58,15 @@
 					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
 					</a></li>
+					<li><a class="" href="{{route('admin.master.kemungkinan')}}">
+						<span class="fa fa-arrow-right">&nbsp;</span> Kemungkinan
+					</a></li>
+					<li><a class="" href="{{route('admin.master.dampak')}}">
+						<span class="fa fa-arrow-right">&nbsp;</span> Dampak
+					</a></li>
+					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
+						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
+					</a></li>
 				</ul>
 			</li>
 			<li><a href="{{route('admin.resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
