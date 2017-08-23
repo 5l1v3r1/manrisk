@@ -13,7 +13,7 @@ class RESIKO extends Model {
     //public $timestamps = false;
     protected $primaryKey = 'ID_RESIKO';
     //public $incrementing = false;
-    protected $fillable = ['ID_RESIKO', 'ID_KEMUNGKINAN', 'ID_DAMPAK', 'ID_ASPEK_TERDAMPAK', 'TOTAL_SKOR', 'TGL_RESIKO', 'CREATED_AT', 'UPDATED_AT', 'CREATED_BY'];
+    protected $fillable = ['ID_RESIKO', 'ID_KEMUNGKINAN', 'ID_DAMPAK', 'ID_ASPEK_TERDAMPAK', 'TOTAL_SKOR', 'CREATED_AT', 'UPDATED_AT', 'CREATED_BY', 'DESKRIPSI_RESIKO', 'ID_MASTER_RESIKO'];
 
 
     public function aSPEKTERDAMPAK() {
@@ -26,6 +26,10 @@ class RESIKO extends Model {
 
     public function mKEMUNGKINANTERJADI() {
         return $this->belongsTo(\App\MKEMUNGKINANTERJADI::class, 'ID_KEMUNGKINAN', 'ID_KEMUNGKINAN');
+    }
+
+    public function mASTERRESIKO() {
+        return $this->belongsTo(\App\MASTERRESIKO::class, 'ID_MASTER_RESIKO', 'ID_MASTER_RESIKO');
     }
 
     public function dETAILPROGRAMs() {
