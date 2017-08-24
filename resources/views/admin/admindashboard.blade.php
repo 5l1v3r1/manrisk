@@ -62,7 +62,7 @@
 					<li><a class="" href="{{route('admin.master.program')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Program
 					</a></li>
-					<li><a class="" href="{{route('admin.master.masterresiko')}}">
+					<li><a class="" href="{{route('admin.master.resiko')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Resiko
 					</a></li>
 				</ul>

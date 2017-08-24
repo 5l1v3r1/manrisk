@@ -63,7 +63,7 @@
 					<li><a class="" href="{{route('admin.master.program')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Program
 					</a></li>
-					<li><a class="" href="{{route('admin.master.masterresiko')}}">
+					<li><a class="" href="{{route('admin.master.resiko')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Resiko
 					</a></li>
 				</ul>
@@ -106,8 +106,8 @@
 					      <thead>
 					        <tr>
 										<th>ID</th>
-										<th>Nama Dampak</th>
-										<th>Skor Dampak</th>
+										<th>Nama Pemicu</th>
+										<th>Jenis Pemicu</th>
 										<th>Edit</th>
 					        </tr>
 					      </thead>
@@ -118,11 +118,11 @@
 					      <tbody>
 									@foreach ($data as $d)
 										<tr>
-											<td>{{$d->id_dampak}}</td>
-											<td>{{$d->nama_dampak}}</td>
-											<td>{{$d->skor_dampak}}</td>
+											<td>{{$d->id_master_resiko}}</td>
+											<td>{{$d->nm_pemicu_resiko}}</td>
+											<td>{{$d->jenis_pemicu}}</td>
 											<td class="action-buttons">
-												<a href="#myModal" data-toggle="modal" data-code="{{$d->id_dampak}}">
+												<a href="#myModal" data-toggle="modal" data-code="{{$d->id_master_resiko}}">
 												  <i class="fa fa-xl fa-pencil-square-o"></i>
 												</a>
 											</td>
@@ -142,24 +142,27 @@
 						<div class="modal-content">
 							<span class="close">&times;</span>
 
-							<form class="form-horizontal" action='{{route('admin.master.dampak.edit')}}' method='post'>
+							<form class="form-horizontal" action='{{route('admin.master.resiko.edit')}}' method='post'>
 									{{ csrf_field() }}
 									<div class="form-group">
-											<label for="nama_dampak" class="col-md-4 control-label">Nama dampak</label>
+											<label for="nm_pemicu_resiko" class="col-md-4 control-label">Nama pemicu</label>
 
 											<div class="col-md-6">
-													<input id="nama_dampak" type="text" class="form-control" name="nama_dampak" required autofocus>
+													<input id="nm_pemicu_resiko" type="text" class="form-control" name="nm_pemicu_resiko" required autofocus>
 											</div>
 									</div>
 									<div class="form-group">
-											<label for="skor_dampak" class="col-md-4 control-label">Skor dampak</label>
+											<label for="jenis_pemicu" class="col-md-4 control-label">Jenis pemicu</label>
 
 											<div class="col-md-6">
-													<input id="skor_dampak" type="text" class="form-control" name="skor_dampak" required autofocus>
+													<select id="jenis_pemicu" class="form-control" name="skor_dampak" required autofocus>
+											        <option value="1">Internal</option>
+											        <option value="2">External</option>
+											    </select>
 											</div>
 									</div>
 
-									<input id="code" type='text' name='id_dampak' />
+									<input id="code" type='text' name='id_master_resiko' />
 									<input class='btn btn-success' type='submit' value='Submit' />
 							</form>
 						</div>
