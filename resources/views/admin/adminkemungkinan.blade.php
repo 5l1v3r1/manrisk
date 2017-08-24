@@ -8,7 +8,6 @@
 	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/table.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/modal.css') }}" rel="stylesheet" type="text/css">
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]>
@@ -121,8 +120,8 @@
 											<td>{{$d->id_kemungkinan}}</td>
 											<td>{{$d->nama_kemungkinan}}</td>
 											<td>{{$d->skor_kemungkinan}}</td>
-											<td class="action-buttons">
-												<a href="#myModal" data-toggle="modal" data-code="{{$d->id_kemungkinan}}">
+											<td>
+												<a data-toggle="modal" data-idk="{{$d->id_kemungkinan}}" href="#myModal">
 												  <i class="fa fa-xl fa-pencil-square-o"></i>
 												</a>
 											</td>
@@ -135,13 +134,15 @@
 
 			</div>
 
-			<div class="row">
-					<div class="col-sm-12">
-						<div class="modal fade bs-example-modal-sm" tabindex="-1" id="myModal">
-						<!-- Modal content -->
-						<div class="modal-content">
-							<span class="close">&times;</span>
-
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Edit Kemungkinan</h4>
+			      </div>
+			      <div class="modal-body">
 							<form class="form-horizontal" action='{{route('admin.master.kemungkinan.edit')}}' method='post'>
 									{{ csrf_field() }}
 									<div class="form-group">
@@ -155,16 +156,21 @@
 											<label for="skor_kemungkinan" class="col-md-4 control-label">Skor kemungkinan</label>
 
 											<div class="col-md-6">
-													<input id="skor_kemungkinan" type="text" class="form-control" name="skor_kemungkinan" required autofocus>
+													<input id="skor_kemungkinan" type="number" class="form-control" name="skor_kemungkinan" required autofocus>
 											</div>
 									</div>
 
-									<input id="code" type='text' name='id_kemungkinan' />
+									<input type='hidden' name='id_kemungkinan' id='id_kemungkinan' value=''/>
 									<input class='btn btn-success' type='submit' value='Submit' />
 							</form>
-						</div>
-				</div>
-			</div>
+
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+
+			  </div>
 			</div>
 
 			<br>
@@ -180,7 +186,6 @@
 	<script type="text/javascript" src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/modal.js') }}"></script>
 	<script>
 		window.onload = function () {
 			var chart1 = document.getElementById("line-chart").getContext("2d");
@@ -196,6 +201,11 @@
 		  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
 		  $('.tbl-header').css({'padding-right':scrollWidth});
 		}).resize();
+
+		$('#myModal').on('show.bs.modal', function(e) {
+		    var idk = $(e.relatedTarget).data('idk');
+		    $(e.currentTarget).find('input[name="id_kemungkinan"]').val(idk);
+		});
 	</script>
 
 </body>

@@ -43,7 +43,7 @@
 		<div class="divider"></div>
 		<ul class="nav menu">
 			<li><a href="{{route('admin.dashboard')}}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-			<li  class="active"><a href="{{route('admin.users')}}"><em class="fa fa-calendar">&nbsp;</em> Users</a></li>
+			<li><a href="{{route('admin.users')}}"><em class="fa fa-calendar">&nbsp;</em> Users</a></li>
 			<li class="parent"><a data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-navicon">&nbsp;</em> Master Data <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
@@ -68,7 +68,7 @@
 					</a></li>
 				</ul>
 			</li>
-			<li><a href="{{route('admin.resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
+			<li class="active"><a href="{{route('admin.resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -106,9 +106,14 @@
 					        <tr>
 										<th>ID Resiko</th>
 										<th>Nama Resiko</th>
-										<th>Total Skor</th>
-										<th>Delete</th>
-										<th>Delete</th>
+										<th>Aspek Terdampak</th>
+										<th>Dampak</th>
+										<th>Kemungkinan</th>
+										<th>Skor</th>
+										<th>Pemicu</th>
+										<th>Jenis</th>
+										<th>Created At</th>
+										<th>Created By</th>
 					        </tr>
 					      </thead>
 					    </table>
@@ -118,15 +123,14 @@
 					      <tbody>
 									@foreach ($data as $d)
 										<tr>
-											<td>{{$d->username}}</td>
-											<td>{{$d->email}}</td>
-											<td class="action-buttons">
-												<form action='{{route('admin.users.delete')}}' method='post'>
-                            {{ csrf_field() }}
-                            <input type='hidden' name='username' value='{{ $d->username }}'/>
-														<button type="submit" style="border:none; background-color: transparent;"><i class="fa fa-xl fa-trash"></i></button>
-                        </form>
-											</td>
+											<td>{{$d->id_resiko}}</td>
+											<td>{{$d->deskripsi_resiko}}</td>
+											<td>{{$d->nama_aspek_terdampak}}</td>
+											<td>{{$d->nama_dampak}}</td>
+											<td>{{$d->nama_kemungkinan}}</td>
+											<td>{{$d->total_skor}}</td>
+											<td>{{$d->created_at}}</td>
+											<td>{{$d->created_by}}</td>
 										</tr>
 									@endforeach
 					      </tbody>
@@ -135,7 +139,8 @@
 					</div>
 
 			</div><!--/.row-->
-		<br>
+
+			<br>
 			<div class="row">
 				<div class="col-sm-12">
 					<p class="back-link">Risk Mangement <a href="https://www.unair.ac.id">Airlangga University</a></p>
@@ -145,11 +150,6 @@
 
 	<script type="text/javascript" src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/chart.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/chart-data.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/easypiechart.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/easypiechart-data.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 	<script>
 		window.onload = function () {

@@ -141,7 +141,11 @@ class AdminController extends Controller
 
     public function showResiko()
     {
-        $data = RESIKO::all();
+        $data = RESIKO::join('m_dampak', 'resiko.id_dampak', '=', 'm_dampak.id_dampak')
+            ->join('aspek_terdampak', 'resiko.id_aspek_terdampak', '=', 'aspek_terdampak.id_aspek_terdampak')
+            ->join('m_kemungkinan_terjadi', 'resiko.id_kemungkinan', '=', 'm_kemungkinan_terjadi.id_kemungkinan')
+            ->join('master_resiko', 'resiko.id_master_resiko', '=', 'master_resiko.id_master_resiko')
+            ->get();
         return view('admin.adminresiko', compact('data'));
     }
 
