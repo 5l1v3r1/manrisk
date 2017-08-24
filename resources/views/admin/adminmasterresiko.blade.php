@@ -94,7 +94,7 @@
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Resiko</h1>
+				<h1 class="page-header">Master Resiko</h1>
 			</div>
 		</div><!--/.row-->
 
@@ -119,7 +119,11 @@
 										<tr>
 											<td>{{$d->id_master_resiko}}</td>
 											<td>{{$d->nm_pemicu_resiko}}</td>
-											<td>{{$d->jenis_pemicu}}</td>
+											<td>@if ($d->jenis_pemicu==1)
+												Internal
+											@else
+												External
+											@endif</td>
 											<td>
 												<a data-toggle="modal" data-idk="{{$d->id_master_resiko}}" href="#myModal">
 												  <i class="fa fa-xl fa-pencil-square-o"></i>

@@ -11,8 +11,7 @@ class MASTERRESIKO extends Model {
 
     protected $table = 'MASTER_RESIKO';
     public $timestamps = false;
-    protected $primaryKey = 'ID_RESIKO';
-    //public $incrementing = false;
+    protected $primaryKey = 'ID_MASTER_RESIKO';
     protected $fillable = ['ID_MASTER_RESIKO', 'NM_MASTER_RESIKO'];
 
     public function rESIKOs() {
