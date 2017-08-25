@@ -43,7 +43,7 @@ class AdminController extends Controller
 
     public function showActionPlan()
     {
-        $data = ACTIONPLAN::all();
+        $data = ACTIONPLAN::orderBy('id_action_plan')->get();
         return view('admin.adminactionplan', compact('data'));
     }
 
@@ -65,7 +65,7 @@ class AdminController extends Controller
 
     public function showProgram()
     {
-        $data = JUDULPROGRAM::all();
+        $data = JUDULPROGRAM::orderBy('id_judul_program')->get();
         return view('admin.adminprogram', compact('data'));
     }
 
@@ -87,7 +87,7 @@ class AdminController extends Controller
 
     public function showMasterResiko()
     {
-        $data = MASTERRESIKO::all();
+        $data = MASTERRESIKO::orderBy('id_master_resiko')->get();
         return view('admin.adminmasterresiko', compact('data'));
     }
 
@@ -125,7 +125,7 @@ class AdminController extends Controller
 
     public function showKemungkinan()
     {
-        $data = MKEMUNGKINANTERJADI::all();
+        $data = MKEMUNGKINANTERJADI::orderBy('id_kemungkinan')->get();
         return view('admin.adminkemungkinan', compact('data'));
     }
 
@@ -171,7 +171,7 @@ class AdminController extends Controller
 
     public function showAspekTerdampak()
     {
-        $data = ASPEKTERDAMPAK::all();
+        $data = ASPEKTERDAMPAK::orderBy('id_aspek_terdampak')->get();
         return view('admin.adminaspekterdampak', compact('data'));
     }
 
