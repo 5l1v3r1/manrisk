@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ACTIONPLAN;
 use App\USER;
+use App\ADMIN;
 use App\RESIKO;
 use App\MASTERRESIKO;
 use App\MDAMPAK;
@@ -34,7 +35,9 @@ class AdminController extends Controller
     {
         $data = [
           'risk' => RESIKO::count(),
-          'user' => USER::count()
+          'user' => USER::count(),
+          'detpro' => DETAILPROGRAM::count(),
+          'admin' => ADMIN::count()
         ];
         return view('admin.admindashboard', compact('data'));
     }

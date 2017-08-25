@@ -110,9 +110,9 @@
 				</div>
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-blue panel-widget border-right">
-						<div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
-							<div class="large">52</div>
-							<div class="text-muted">Comments</div>
+						<div class="row no-padding"><em class="fa fa-xl fa-info color-orange"></em>
+							<div class="large">{{$data['detpro']}}</div>
+							<div class="text-muted">Detail Program</div>
 						</div>
 					</div>
 				</div>
@@ -126,9 +126,9 @@
 				</div>
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-red panel-widget ">
-						<div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
-							<div class="large">25.2k</div>
-							<div class="text-muted">Page Views</div>
+						<div class="row no-padding"><em class="fa fa-xl fa-user color-red"></em>
+							<div class="large">{{$data['admin']}}</div>
+							<div class="text-muted">Admins</div>
 						</div>
 					</div>
 				</div>
