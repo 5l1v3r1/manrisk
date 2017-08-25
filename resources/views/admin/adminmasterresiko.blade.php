@@ -68,6 +68,7 @@
 				</ul>
 			</li>
 			<li><a href="{{route('admin.resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
+			<li><a href="{{route('admin.detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -134,6 +135,8 @@
 					      </tbody>
 					    </table>
 					  </div>
+						<br>
+						<a class="btn btn-success pull-right" data-toggle="modal" href="#add">Add</a>
 					</div>
 
 			</div><!--/.row-->
@@ -180,6 +183,46 @@
 			  </div>
 			</div>
 
+			<div id="add" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Add Master Resiko</h4>
+			      </div>
+			      <div class="modal-body">
+							<form class="form-horizontal" action='{{route('admin.master.resiko.add')}}' method='post'>
+									{{ csrf_field() }}
+									<div class="form-group">
+											<label for="nm_pemicu_resiko" class="col-md-4 control-label">Nama pemicu resiko</label>
+
+											<div class="col-md-6">
+													<input id="nm_pemicu_resiko" type="text" class="form-control" name="nm_pemicu_resiko" required autofocus>
+											</div>
+									</div>
+									<div class="form-group">
+											<label for="jenis_pemicu" class="col-md-4 control-label">Jenis pemicu</label>
+
+											<div class="col-md-6">
+													<select id="jenis_pemicu" type="number" class="form-control" name="jenis_pemicu" required autofocus>
+											        <option value="1">Internal</option>
+											        <option value="2">External</option>
+											    </select>
+											</div>
+									</div>
+									<input class='btn btn-success' type='submit' value='Submit' />
+							</form>
+
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div>
+
 			<br>
 			<div class="row">
 				<div class="col-sm-12">
@@ -211,6 +254,8 @@
 		    var idk = $(e.relatedTarget).data('idk');
 		    $(e.currentTarget).find('input[name="id_master_resiko"]').val(idk);
 		});
+
+		$('#myModal').on('show.bs.modal');
 	</script>
 
 </body>

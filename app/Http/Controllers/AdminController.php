@@ -9,6 +9,7 @@ use App\RESIKO;
 use App\MASTERRESIKO;
 use App\MDAMPAK;
 use App\JUDULPROGRAM;
+use App\DETAILPROGRAM;
 use App\ASPEKTERDAMPAK;
 use App\MKEMUNGKINANTERJADI;
 
@@ -52,6 +53,14 @@ class AdminController extends Controller
         return $this->showActionPlan();
     }
 
+    public function addActionPlan(Request $req)
+    {
+        $d = new ACTIONPLAN;
+        $d->nama_action_plan = $req->nama_action_plan;
+        $d->save();
+        return $this->showActionPlan();
+    }
+
     //===========================================================================================================================================================================================
 
     public function showProgram()
@@ -66,6 +75,14 @@ class AdminController extends Controller
         return $this->showProgram();
     }
 
+    public function addProgram(Request $req)
+    {
+        $d = new JUDULPROGRAM;
+        $d->nama_judul_program = $req->nama_judul_program;
+        $d->save();
+        return $this->showProgram();
+    }
+
     //===========================================================================================================================================================================================
 
     public function showMasterResiko()
@@ -77,6 +94,15 @@ class AdminController extends Controller
     public function editMasterResiko(Request $req)
     {
         $edit = MASTERRESIKO::where('id_master_resiko', $req->id_master_resiko)->update(['nm_pemicu_resiko' => $req->nm_pemicu_resiko, 'jenis_pemicu' => $req->jenis_pemicu]);
+        return $this->showMasterResiko();
+    }
+
+    public function addMasterResiko(Request $req)
+    {
+        $d = new MASTERRESIKO;
+        $d->nm_pemicu_resiko = $req->nm_pemicu_resiko;
+        $d->jenis_pemicu = $req->jenis_pemicu;
+        $d->save();
         return $this->showMasterResiko();
     }
 
@@ -109,17 +135,35 @@ class AdminController extends Controller
         return $this->showKemungkinan();
     }
 
+    public function addKemungkinan(Request $req)
+    {
+        $d = new MKEMUNGKINANTERJADI;
+        $d->nama_kemungkinan = $req->nama_kemungkinan;
+        $d->skor_kemungkinan = $req->skor_kemungkinan;
+        $d->save();
+        return $this->showKemungkinan();
+    }
+
     //===========================================================================================================================================================================================
 
     public function showDampak()
     {
-        $data = MDAMPAK::all();
+        $data = MDAMPAK::orderBy('id_dampak')->get();
         return view('admin.admindampak', compact('data'));
     }
 
     public function editDampak(Request $req)
     {
         $edit = MDAMPAK::where('id_dampak', $req->id_dampak)->update(['nama_dampak' => $req->nama_dampak, 'skor_dampak' => $req->skor_dampak]);
+        return $this->showDampak();
+    }
+
+    public function addDampak(Request $req)
+    {
+        $d = new MDAMPAK;
+        $d->nama_dampak = $req->nama_dampak;
+        $d->skor_dampak = $req->skor_dampak;
+        $d->save();
         return $this->showDampak();
     }
 
@@ -137,6 +181,14 @@ class AdminController extends Controller
         return $this->showAspekTerdampak();
     }
 
+    public function addAspekTerdampak(Request $req)
+    {
+        $d = new ASPEKTERDAMPAK;
+        $d->nama_aspek_terdampak = $req->nama_aspek_terdampak;
+        $d->save();
+        return $this->showDampak();
+    }
+
     //===========================================================================================================================================================================================
 
     public function showResiko()
@@ -150,4 +202,13 @@ class AdminController extends Controller
     }
 
     //===========================================================================================================================================================================================
+
+    public function showDetailProgram()
+    {
+        $data = DETAILPROGRAM::join('judul_program', 'detail_program.id_judul_program', '=', 'judul_program.id_judul_program')
+            ->join('action_plan', 'detail_program.id_action_plan', '=', 'action_plan.id_action_plan')
+            ->join('resiko', 'detail_program.id_resiko', '=', 'resiko.id_resiko')
+            ->get();
+        return view('admin.admindetailprogram', compact('data'));
+    }
 }

@@ -68,6 +68,7 @@
 				</ul>
 			</li>
 			<li><a href="{{route('admin.resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
+			<li><a href="{{route('admin.detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -128,6 +129,8 @@
 					      </tbody>
 					    </table>
 					  </div>
+						<br>
+						<a class="btn btn-success pull-right" data-toggle="modal" href="#add">Add</a>
 					</div>
 
 			</div><!--/.row-->
@@ -155,6 +158,35 @@
 									<input class='btn btn-success' type='submit' value='Submit' />
 							</form>
 
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div>
+
+			<div id="add" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Add Program</h4>
+			      </div>
+			      <div class="modal-body">
+							<form class="form-horizontal" action='{{route('admin.master.program.add')}}' method='post'>
+									{{ csrf_field() }}
+									<div class="form-group">
+											<label for="nama_judul_program" class="col-md-4 control-label">Judul program</label>
+
+											<div class="col-md-6">
+													<input id="nama_judul_program" type="text" class="form-control" name="nama_judul_program" required autofocus>
+											</div>
+									</div>
+									<input class='btn btn-success' type='submit' value='Submit' />
+							</form>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -195,6 +227,8 @@
 		    var idk = $(e.relatedTarget).data('idk');
 		    $(e.currentTarget).find('input[name="id_judul_program"]').val(idk);
 		});
+
+		$('#myModal').on('show.bs.modal');
 	</script>
 
 </body>

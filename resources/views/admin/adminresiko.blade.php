@@ -69,6 +69,7 @@
 				</ul>
 			</li>
 			<li class="active"><a href="{{route('admin.resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
+			<li><a href="{{route('admin.detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -112,7 +113,6 @@
 										<th>Skor</th>
 										<th>Pemicu</th>
 										<th>Jenis</th>
-										<th>Created At</th>
 										<th>Created By</th>
 					        </tr>
 					      </thead>
@@ -135,7 +135,6 @@
 											@else
 												External
 											@endif</td>
-											<td>{{$d->created_at}}</td>
 											<td>{{$d->created_by}}</td>
 										</tr>
 									@endforeach

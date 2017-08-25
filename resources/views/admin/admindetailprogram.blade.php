@@ -3,9 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Master Aspek Terdampak</title>
+	<title>Detail Program</title>
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/datepicker3.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/table.css') }}" rel="stylesheet" type="text/css">
 	<!--Custom Font-->
@@ -43,7 +44,7 @@
 		<ul class="nav menu">
 			<li><a href="{{route('admin.dashboard')}}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
 			<li><a href="{{route('admin.users')}}"><em class="fa fa-calendar">&nbsp;</em> Users</a></li>
-			<li class="parent active"><a data-toggle="collapse" href="#sub-item-1">
+			<li class="parent"><a data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-navicon">&nbsp;</em> Master Data <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
 				<ul class="children collapse" id="sub-item-1">
@@ -68,7 +69,7 @@
 				</ul>
 			</li>
 			<li><a href="{{route('admin.resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
-			<li><a href="{{route('admin.detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
+			<li class="active"><a href="{{route('admin.detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -88,14 +89,13 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li>Master</li>
-				<li class="active">Aspek Terdampak</li>
+				<li class="active">Detail Program</li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Aspek Terdampak</h1>
+				<h1 class="page-header">Detail Program</h1>
 			</div>
 		</div><!--/.row-->
 
@@ -105,9 +105,17 @@
 					    <table cellpadding="0" cellspacing="0" border="0">
 					      <thead>
 					        <tr>
-										<th>ID</th>
-										<th>Nama Dampak</th>
-										<th>Edit</th>
+										<th width="3%">ID</th>
+										<th>Judul Program</th>
+										<th>Action Plan</th>
+										<th>Resiko</th>
+										<th>Sasaran</th>
+										<th>Waktu Pelaksanaan</th>
+										<th>Indikator Kegiatan</th>
+										<th>Luaran Dampak</th>
+										<th>Status Capaian</th>
+										<th>Tahun</th>
+										<th>Created By</th>
 					        </tr>
 					      </thead>
 					    </table>
@@ -117,84 +125,27 @@
 					      <tbody>
 									@foreach ($data as $d)
 										<tr>
-											<td>{{$d->id_aspek_terdampak}}</td>
+											<td width="3%">{{$d->id_detail_program}}</td>
+											<td>{{$d->nama_judul_program}}</td>
 											<td>{{$d->nama_aspek_terdampak}}</td>
-											<td>
-												<a data-toggle="modal" data-idk="{{$d->id_aspek_terdampak}}" href="#myModal">
-												  <i class="fa fa-xl fa-pencil-square-o"></i>
-												</a>
-											</td>
+											<td>{{$d->nama_action_plan}}</td>
+											<td>{{$d->deskripsi_resiko}}</td>
+											<td>{{$d->unit_sasaran}}</td>
+											<td>{{$d->rencana_anggaran}}</td>
+											<td>{{$d->waktu_pelaksanaan}}</td>
+											<td>{{$d->indikator_pelaksanaan}}</td>
+											<td>{{$d->luaran_dampak}}</td>
+											<td>{{$d->status_capaian}}</td>
+											<td>{{$d->tahun}}</td>
+											<td>{{$d->created_by}}</td>
 										</tr>
 									@endforeach
 					      </tbody>
 					    </table>
 					  </div>
-						<br>
-						<a class="btn btn-success pull-right" data-toggle="modal" href="#add">Add</a>
 					</div>
 
 			</div><!--/.row-->
-
-			<div id="myModal" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Edit Aspek Terdampak</h4>
-			      </div>
-			      <div class="modal-body">
-							<form class="form-horizontal" action='{{route('admin.master.aspekterdampak.edit')}}' method='post'>
-									{{ csrf_field() }}
-									<div class="form-group">
-											<label for="nama_aspek_terdampak" class="col-md-4 control-label">Nama Aspek Terdampak</label>
-
-											<div class="col-md-6">
-													<input id="nama_aspek_terdampak" type="text" class="form-control" name="nama_aspek_terdampak" required autofocus>
-											</div>
-									</div>
-									<input type='hidden' name='id_aspek_terdampak' id='id_aspek_terdampak' value=''/>
-									<input class='btn btn-success' type='submit' value='Submit' />
-							</form>
-
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			      </div>
-			    </div>
-
-			  </div>
-			</div>
-
-			<div id="add" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Add Aspek Terdampak</h4>
-			      </div>
-			      <div class="modal-body">
-							<form class="form-horizontal" action='{{route('admin.master.aspekterdampak.add')}}' method='post'>
-									{{ csrf_field() }}
-									<div class="form-group">
-											<label for="nama_aspek_terdampak" class="col-md-4 control-label">Nama Aspek Terdampak</label>
-
-											<div class="col-md-6">
-													<input id="nama_aspek_terdampak" type="text" class="form-control" name="nama_aspek_terdampak" required autofocus>
-											</div>
-									</div>
-									<input class='btn btn-success' type='submit' value='Submit' />
-							</form>
-
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			      </div>
-			    </div>
-
-			  </div>
-			</div>
 
 			<br>
 			<div class="row">
@@ -222,13 +173,6 @@
 		  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
 		  $('.tbl-header').css({'padding-right':scrollWidth});
 		}).resize();
-
-		$('#myModal').on('show.bs.modal', function(e) {
-		    var idk = $(e.relatedTarget).data('idk');
-		    $(e.currentTarget).find('input[name="id_aspek_terdampak"]').val(idk);
-		});
-
-		$('#myModal').on('show.bs.modal');
 	</script>
 
 </body>

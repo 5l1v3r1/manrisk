@@ -10,7 +10,7 @@ class DETAILPROGRAM extends Model {
      */
 
     protected $table = 'DETAIL_PROGRAM';
-    public $timestamps = false;
+    //public $timestamps = false;
     protected $primaryKey = 'ID_DETAIL_PROGRAM';
     public $incrementing = false;
     protected $fillable = ['ID_DETAIL_PROGRAM', 'ID_JUDUL_PROGRAM', 'ID_ACTION_PLAN', 'ID_RESIKO', 'UNIT_SASARAN', 'RENCANA_ANGGARAN', 'WAKTU_PELAKSANAAN', 'INDIKATOR_KEGIATAN', 'LUARAN_DAMPAK', 'STATUS_CAPAIAN', 'TAHUN', 'CREATED_AT', 'CREATED_BY'];

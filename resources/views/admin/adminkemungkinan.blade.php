@@ -68,6 +68,7 @@
 				</ul>
 			</li>
 			<li><a href="{{route('admin.resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
+			<li><a href="{{route('admin.detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -130,6 +131,8 @@
 					      </tbody>
 					    </table>
 					  </div>
+						<br>
+						<a class="btn btn-success pull-right" data-toggle="modal" href="#add">Add</a>
 					</div>
 
 			</div>
@@ -161,6 +164,43 @@
 									</div>
 
 									<input type='hidden' name='id_kemungkinan' id='id_kemungkinan' value=''/>
+									<input class='btn btn-success' type='submit' value='Submit' />
+							</form>
+
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div>
+
+			<div id="add" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Add Kemungkinan</h4>
+			      </div>
+			      <div class="modal-body">
+							<form class="form-horizontal" action='{{route('admin.master.kemungkinan.add')}}' method='post'>
+									{{ csrf_field() }}
+									<div class="form-group">
+											<label for="nama_kemungkinan" class="col-md-4 control-label">Nama kemungkinan</label>
+
+											<div class="col-md-6">
+													<input id="nama_kemungkinan" type="text" class="form-control" name="nama_kemungkinan" required autofocus>
+											</div>
+									</div>
+									<div class="form-group">
+											<label for="skor_kemungkinan" class="col-md-4 control-label">Skor kemungkinan</label>
+
+											<div class="col-md-6">
+													<input id="skor_kemungkinan" type="number" class="form-control" name="skor_kemungkinan" required autofocus>
+											</div>
+									</div>
 									<input class='btn btn-success' type='submit' value='Submit' />
 							</form>
 
@@ -206,6 +246,8 @@
 		    var idk = $(e.relatedTarget).data('idk');
 		    $(e.currentTarget).find('input[name="id_kemungkinan"]').val(idk);
 		});
+
+		$('#myModal').on('show.bs.modal');
 	</script>
 
 </body>
