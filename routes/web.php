@@ -17,7 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/resiko', 'HomeController@index')->name('home');
+
+Route::get('/resiko', 'HomeController@index')->name('resiko');
+Route::post('/resiko/add', 'HomeController@addResiko')->name('resiko.add');
+
+Route::get('/detailprogram', 'HomeController@showDetailProgram')->name('detailprogram');
+Route::post('/detailprogram/add', 'HomeController@addDetailProgram')->name('detailprogram.add');
+
 
 Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -51,7 +58,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/master/resiko/add', 'AdminController@addMasterResiko')->name('admin.master.resiko.add');
 
     Route::get('/resiko', 'AdminController@showResiko')->name('admin.resiko');
-    
+
     Route::get('/detailprogram', 'AdminController@showDetailProgram')->name('admin.detailprogram');
 
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
