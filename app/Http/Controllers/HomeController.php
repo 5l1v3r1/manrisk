@@ -97,4 +97,17 @@ class HomeController extends Controller
         return $this->showDetailProgram();
     }
 
+    public function findSkorDampak(Request $req)
+    {
+        $sd = MDAMPAK::where('id_dampak', 2)->get();
+        return response()->json($sd);
+    }
+
+    public function findSkorKemungkinan(Request $req)
+    {
+        $sk = MKEMUNGKINANTERJADI::where('id_kemungkinan', $req->id_kemungkinan)->get();
+        return response()->json($sk);
+    }
+
+
 }

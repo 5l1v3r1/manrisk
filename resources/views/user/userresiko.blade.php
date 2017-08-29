@@ -159,7 +159,7 @@
 											<label for="id_kemungkinan" class="col-md-4 control-label">Kemungkinan terjadi</label>
 
 											<div class="col-md-6">
-													<select id="id_kemungkinan" type="number" class="form-control" name="id_kemungkinan" required autofocus>
+													<select id="callskor" type="number" class="form-control" name="id_kemungkinan" required autofocus>
 															@foreach ($kt as $kt)
 																	<option value="{{$kt->id_kemungkinan}}">{{$kt->nama_kemungkinan}} ({{$kt->skor_kemungkinan}})</option>
 															@endforeach
@@ -170,7 +170,7 @@
 											<label for="id_dampak" class="col-md-4 control-label">Dampak</label>
 
 											<div class="col-md-6">
-													<select id="id_dampak" type="number" class="form-control" name="id_dampak" required autofocus>
+													<select id="aa" type="number" class="form-control" name="id_dampak" required autofocus>
 															@foreach ($dm as $d)
 																	<option value="{{$d->id_dampak}}">{{$d->nama_dampak}} ({{$d->skor_dampak}})</option>
 															@endforeach
@@ -185,7 +185,7 @@
 											</div>
 									</div>
 									<input type='hidden' name='created_by' id='created_by' value='{{ Auth::user()->username }}'/>
-									<input class='btn btn-warning' />
+									<a class="btn btn-warning pull-right" href="#callskor">Hitung Skor</a>
 									<input class='btn btn-success' type='submit' value='Submit' />
 							</form>
 
@@ -215,6 +215,30 @@
 			});
 
 			$('#add').on('show.bs.modal');
+
+			$('#callskor').on('change',function(){
+					var dampak = document.getElementsByName('id_dampak').value;
+					var kemungkinan = document.getElementsByName('id_kemungkinan').value;
+					$.ajax({
+						type:'get',
+						url:'{!!URL::to('findSkorDampak')!!}',
+						data:{'id':dampak},
+						dataType: "json",
+						success: function(response){
+								var sd = parseInt(alert(response.skor_dampak));
+								$.ajax({
+									type:'get',
+									url:'{!!URL::to('findSkorKemungkinan')!!}',
+									data:{'id':kemungkinan},
+									dataType: "json",
+									success: function(a){
+											var sk = parseInt(alert(a.skor_kemungkinan));
+							    },
+								});
+				    },
+					});
+
+     });
 
 			function Calculate()
 			{

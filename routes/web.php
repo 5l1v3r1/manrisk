@@ -25,6 +25,8 @@ Route::post('/resiko/add', 'HomeController@addResiko')->name('resiko.add');
 Route::get('/detailprogram', 'HomeController@showDetailProgram')->name('detailprogram');
 Route::post('/detailprogram/add', 'HomeController@addDetailProgram')->name('detailprogram.add');
 
+Route::get('/findSkorDampak', 'HomeController@findSkorDampak')->name('findskordampak');
+Route::get('/findSkorKemungkinan', 'HomeController@findSkorKemungkinan')->name('findskorkemungkinan');
 
 Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
