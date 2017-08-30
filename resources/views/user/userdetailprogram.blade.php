@@ -83,6 +83,7 @@
 										<th>Action Plan</th>
 										<th>Resiko</th>
 										<th>Sasaran</th>
+										<th>Rencana Anggaran</th>
 										<th>Waktu Pelaksanaan</th>
 										<th>Indikator Kegiatan</th>
 										<th>Luaran Dampak</th>
@@ -98,13 +99,12 @@
 									@foreach ($data as $d)
 										<tr>
 											<td>{{$d->nama_judul_program}}</td>
-											<td>{{$d->nama_aspek_terdampak}}</td>
 											<td>{{$d->nama_action_plan}}</td>
 											<td>{{$d->deskripsi_resiko}}</td>
 											<td>{{$d->unit_sasaran}}</td>
 											<td>{{$d->rencana_anggaran}}</td>
 											<td>{{$d->waktu_pelaksanaan}}</td>
-											<td>{{$d->indikator_pelaksanaan}}</td>
+											<td>{{$d->indikator_kegiatan}}</td>
 											<td>{{$d->luaran_dampak}}</td>
 											<td>{{$d->status_capaian}}</td>
 											<td>{{$d->tahun}}</td>

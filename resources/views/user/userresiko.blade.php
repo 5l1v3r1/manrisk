@@ -181,7 +181,7 @@
 											<label for="skor" class="col-md-4 control-label">Skor</label>
 
 											<div class="col-md-6">
-													<input id="skor" type="number" class="form-control" name="skor" value="" required autofocus>
+													<p id="skor"></p>
 											</div>
 									</div>
 									<input type='hidden' name='created_by' id='created_by' value='{{ Auth::user()->username }}'/>
@@ -209,10 +209,10 @@
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 	<script>
-			$('#myModal').on('show.bs.modal', function(e) {
-					var idk = $(e.relatedTarget).data('idk');
-					$(e.currentTarget).find('input[name="id_dampak"]').val(idk);
-			});
+			// $('#myModal').on('show.bs.modal', function(e) {
+			// 		var idk = $(e.relatedTarget).data('idk');
+			// 		$(e.currentTarget).find('input[name="id_dampak"]').val(idk);
+			// });
 
 			$('#add').on('show.bs.modal');
 
@@ -225,28 +225,32 @@
 						data:{'id':dampak},
 						dataType: "json",
 						success: function(response){
-								var sd = parseInt(alert(response.skor_dampak));
-								$.ajax({
-									type:'get',
-									url:'{!!URL::to('findSkorKemungkinan')!!}',
-									data:{'id':kemungkinan},
-									dataType: "json",
-									success: function(a){
-											var sk = parseInt(alert(a.skor_kemungkinan));
-							    },
-								});
+							console.log(response);
+							alert(response.skor_dampak);
+								// var sd = JSON.parse(response.skor_dampak);
+								// document.getElementById("skor").innerHTML = sd;
+								// $.ajax({
+								// 	type:'get',
+								// 	url:'{!kutang!URL::to('findSkorKemungkinan')!!}',
+								// 	data:{'id':kemungkinan},
+								// 	dataType: "json",
+								// 	success: function(a){
+								// 			var sk = parseInt(alert(a.skor_kemungkinan));
+								// 			document.getElementById("skor").innerHTML = sk*sd;
+							  //   },
+								// });
 				    },
 					});
 
      });
 
-			function Calculate()
-			{
-					var dampak = document.getElementById('id_kemungkinan').value;
-					var kemungkinan = document.getElementById('id_kemungkinan').value;
-					document.getElementById('skor').value=parseInt(dampak) * parseInt(kemungkinan);
-					document.form1.submit();
-			}
+			// function Calculate()
+			// {
+			// 		var dampak = document.getElementById('id_kemungkinan').value;
+			// 		var kemungkinan = document.getElementById('id_kemungkinan').value;
+			// 		document.getElementById('skor').value=parseInt(dampak) * parseInt(kemungkinan);
+			// 		document.form1.submit();
+			// }
 	</script>
 
 </body>
