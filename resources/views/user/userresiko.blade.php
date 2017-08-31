@@ -159,7 +159,7 @@
 											<label for="id_kemungkinan" class="col-md-4 control-label">Kemungkinan terjadi</label>
 
 											<div class="col-md-6">
-													<select id="callskor" type="number" class="form-control" name="id_kemungkinan" required autofocus>
+													<select id="id_kemungkinan" type="number" class="form-control" name="id_kemungkinan" required autofocus>
 															@foreach ($kt as $kt)
 																	<option value="{{$kt->id_kemungkinan}}">{{$kt->nama_kemungkinan}} ({{$kt->skor_kemungkinan}})</option>
 															@endforeach
@@ -170,7 +170,7 @@
 											<label for="id_dampak" class="col-md-4 control-label">Dampak</label>
 
 											<div class="col-md-6">
-													<select id="aa" type="number" class="form-control" name="id_dampak" required autofocus>
+													<select id="id_dampak" type="number" class="form-control" name="id_dampak" required autofocus>
 															@foreach ($dm as $d)
 																	<option value="{{$d->id_dampak}}">{{$d->nama_dampak}} ({{$d->skor_dampak}})</option>
 															@endforeach
@@ -216,29 +216,25 @@
 
 			$('#add').on('show.bs.modal');
 
-			$('#callskor').on('change',function(){
-					var dampak = document.getElementsByName('id_dampak').value;
-					var kemungkinan = document.getElementsByName('id_kemungkinan').value;
+			$('#id_kemungkinan').on('change',function(){
+					var dampak = document.getElementById('id_dampak').value;
+					var kemungkinan = document.getElementById('id_kemungkinan').value;
 					$.ajax({
 						type:'get',
-						url:'{!!URL::to('findSkorDampak')!!}',
-						data:{'id':dampak},
+						url:'{!!URL::to('findSkorKemungkinan')!!}',
+						data:{'id_kemungkinan':kemungkinan},
 						dataType: "json",
 						success: function(response){
-							console.log(response);
-							alert(response.skor_dampak);
-								// var sd = JSON.parse(response.skor_dampak);
-								// document.getElementById("skor").innerHTML = sd;
-								// $.ajax({
-								// 	type:'get',
-								// 	url:'{!kutang!URL::to('findSkorKemungkinan')!!}',
-								// 	data:{'id':kemungkinan},
-								// 	dataType: "json",
-								// 	success: function(a){
-								// 			var sk = parseInt(alert(a.skor_kemungkinan));
-								// 			document.getElementById("skor").innerHTML = sk*sd;
-							  //   },
-								// });
+								$.ajax({
+									type:'get',
+									url:'{!!URL::to('findSkorDampak')!!}',
+									data:{'id_dampak':dampak},
+									dataType: "json",
+									success: function(a){
+											alert(response);
+											console.log(a);
+							    },
+								});
 				    },
 					});
 
