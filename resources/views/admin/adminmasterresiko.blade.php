@@ -56,9 +56,6 @@
 					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
 					</a></li>
-					<li><a class="" href="{{route('admin.master.actionplan')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Action Plan
-					</a></li>
 					<li><a class="" href="{{route('admin.master.program')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Program
 					</a></li>

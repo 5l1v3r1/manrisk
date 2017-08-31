@@ -127,7 +127,7 @@
 							<form class="form-horizontal" action='{{route('resiko.add')}}' method='post'>
 									{{ csrf_field() }}
 									<div class="form-group">
-											<label for="id_master_resiko" class="col-md-4 control-label">Master resiko</label>
+											<label for="id_master_resiko" class="col-md-4 control-label">Faktor pemicu</label>
 
 											<div class="col-md-6">
 													<select id="id_master_resiko" type="number" class="form-control" name="id_master_resiko" required autofocus>
@@ -181,11 +181,10 @@
 											<label for="skor" class="col-md-4 control-label">Skor</label>
 
 											<div class="col-md-6">
-													<p id="skor"></p>
+													<p id="skor" class="form-control">1</p>
 											</div>
 									</div>
 									<input type='hidden' name='created_by' id='created_by' value='{{ Auth::user()->username }}'/>
-									<a class="btn btn-warning pull-right" href="#callskor">Hitung Skor</a>
 									<input class='btn btn-success' type='submit' value='Submit' />
 							</form>
 
@@ -231,22 +230,39 @@
 									data:{'id_dampak':dampak},
 									dataType: "json",
 									success: function(a){
-											alert(response);
-											console.log(a);
+											var skor = response.skor_kemungkinan * a.skor_dampak;
+											document.getElementById("skor").innerHTML = skor;
 							    },
 								});
 				    },
 					});
 
-     });
+     	});
 
-			// function Calculate()
-			// {
-			// 		var dampak = document.getElementById('id_kemungkinan').value;
-			// 		var kemungkinan = document.getElementById('id_kemungkinan').value;
-			// 		document.getElementById('skor').value=parseInt(dampak) * parseInt(kemungkinan);
-			// 		document.form1.submit();
-			// }
+			$('#id_dampak').on('change',function(){
+					var dampak = document.getElementById('id_dampak').value;
+					var kemungkinan = document.getElementById('id_kemungkinan').value;
+					$.ajax({
+						type:'get',
+						url:'{!!URL::to('findSkorKemungkinan')!!}',
+						data:{'id_kemungkinan':kemungkinan},
+						dataType: "json",
+						success: function(response){
+								$.ajax({
+									type:'get',
+									url:'{!!URL::to('findSkorDampak')!!}',
+									data:{'id_dampak':dampak},
+									dataType: "json",
+									success: function(a){
+											var skor = response.skor_kemungkinan * a.skor_dampak;
+											document.getElementById("skor").innerHTML = skor;
+							    },
+								});
+				    },
+					});
+
+     	});
+
 	</script>
 
 </body>

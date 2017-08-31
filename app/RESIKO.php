@@ -32,8 +32,8 @@ class RESIKO extends Model {
         return $this->belongsTo(\App\MASTERRESIKO::class, 'ID_MASTER_RESIKO', 'ID_MASTER_RESIKO');
     }
 
-    public function dETAILPROGRAMs() {
-        return $this->hasMany(\App\DETAILPROGRAM::class, 'ID_RESIKO', 'ID_RESIKO');
+    public function aCTIONPLANs() {
+        return $this->hasMany(\App\Models\ACTIONPLAN::class, 'ID_RESIKO', 'ID_RESIKO');
     }
 
 

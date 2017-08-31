@@ -57,9 +57,6 @@
 					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
 					</a></li>
-					<li><a class="" href="{{route('admin.master.actionplan')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Action Plan
-					</a></li>
 					<li><a class="" href="{{route('admin.master.program')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Program
 					</a></li>
@@ -106,10 +103,10 @@
 					      <thead>
 					        <tr>
 										<th width="3%">ID</th>
-										<th>Nama Resiko</th>
+										<th>Deskripsi Resiko</th>
+										<th>Kemungkinan</th>
 										<th>Aspek Terdampak</th>
 										<th>Dampak</th>
-										<th>Kemungkinan</th>
 										<th>Skor</th>
 										<th>Pemicu</th>
 										<th>Jenis</th>
@@ -125,9 +122,9 @@
 										<tr>
 											<td width="3%">{{$d->id_resiko}}</td>
 											<td>{{$d->deskripsi_resiko}}</td>
+											<td>{{$d->nama_kemungkinan}}</td>
 											<td>{{$d->nama_aspek_terdampak}}</td>
 											<td>{{$d->nama_dampak}}</td>
-											<td>{{$d->nama_kemungkinan}}</td>
 											<td>{{$d->total_skor}}</td>
 											<td>{{$d->nm_pemicu_resiko}}</td>
 											<td>@if ($d->jenis_pemicu==1)

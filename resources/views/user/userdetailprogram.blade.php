@@ -103,7 +103,9 @@
 											<td>{{$d->deskripsi_resiko}}</td>
 											<td>{{$d->unit_sasaran}}</td>
 											<td>{{$d->rencana_anggaran}}</td>
-											<td>{{$d->waktu_pelaksanaan}}</td>
+											<td>@php
+											echo $d->waktu_pelaksanaan->format('d-m-Y');
+											@endphp</td>
 											<td>{{$d->indikator_kegiatan}}</td>
 											<td>{{$d->luaran_dampak}}</td>
 											<td>{{$d->status_capaian}}</td>

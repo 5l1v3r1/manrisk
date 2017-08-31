@@ -47,10 +47,6 @@ Route::prefix('admin')->group(function(){
     Route::post('/master/aspekterdampak', 'AdminController@editAspekTerdampak')->name('admin.master.aspekterdampak.edit');
     Route::post('/master/aspekterdampak/add', 'AdminController@addAspekTerdampak')->name('admin.master.aspekterdampak.add');
 
-    Route::get('/master/actionplan', 'AdminController@showActionPlan')->name('admin.master.actionplan');
-    Route::post('/master/actionplan', 'AdminController@editActionPlan')->name('admin.master.actionplan.edit');
-    Route::post('/master/actionplan/add', 'AdminController@addActionPlan')->name('admin.master.actionplan.add');
-
     Route::get('/master/program', 'AdminController@showProgram')->name('admin.master.program');
     Route::post('/master/program', 'AdminController@editProgram')->name('admin.master.program.edit');
     Route::post('/master/program/add', 'AdminController@addProgram')->name('admin.master.program.add');
@@ -60,6 +56,8 @@ Route::prefix('admin')->group(function(){
     Route::post('/master/resiko/add', 'AdminController@addMasterResiko')->name('admin.master.resiko.add');
 
     Route::get('/resiko', 'AdminController@showResiko')->name('admin.resiko');
+
+    Route::get('/actionplan', 'AdminController@showActionPlan')->name('admin.actionplan');
 
     Route::get('/detailprogram', 'AdminController@showDetailProgram')->name('admin.detailprogram');
 

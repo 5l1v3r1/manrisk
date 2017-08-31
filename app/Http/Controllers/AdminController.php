@@ -46,23 +46,25 @@ class AdminController extends Controller
 
     public function showActionPlan()
     {
-        $data = ACTIONPLAN::orderBy('id_action_plan')->get();
+        $data = ACTIONPLAN::orderBy('id_action_plan')
+            ->join('resiko', 'action_plan.id_resiko', '=', 'resiko.id_resiko')
+            ->get();
         return view('admin.adminactionplan', compact('data'));
     }
 
-    public function editActionPlan(Request $req)
-    {
-        $edit = ACTIONPLAN::where('id_action_plan', $req->id_action_plan)->update(['nama_action_plan' => $req->nama_action_plan]);
-        return $this->showActionPlan();
-    }
-
-    public function addActionPlan(Request $req)
-    {
-        $d = new ACTIONPLAN;
-        $d->nama_action_plan = $req->nama_action_plan;
-        $d->save();
-        return $this->showActionPlan();
-    }
+    // public function editActionPlan(Request $req)
+    // {
+    //     $edit = ACTIONPLAN::where('id_action_plan', $req->id_action_plan)->update(['nama_action_plan' => $req->nama_action_plan]);
+    //     return $this->showActionPlan();
+    // }
+    //
+    // public function addActionPlan(Request $req)
+    // {
+    //     $d = new ACTIONPLAN;
+    //     $d->nama_action_plan = $req->nama_action_plan;
+    //     $d->save();
+    //     return $this->showActionPlan();
+    // }
 
     //===========================================================================================================================================================================================
 
@@ -214,4 +216,92 @@ class AdminController extends Controller
             ->get();
         return view('admin.admindetailprogram', compact('data'));
     }
+
+    //===========================================================================================================================================================================================
+
+    public function resikoJan()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 1)
+            ->count();
+    }
+
+    public function resikoFeb()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 2)
+            ->count();
+    }
+
+    public function resikoMar()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 3)
+            ->count();
+    }
+
+    public function resikoApr()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 4)
+            ->count();
+    }
+
+    public function resikoMay()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 5)
+            ->count();
+    }
+
+    public function resikoJun()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 6)
+            ->count();
+    }
+
+    public function resikoJul()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 7)
+            ->count();
+    }
+
+    public function resikoAgs()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 8)
+            ->count();
+    }
+
+    public function resikoSep()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 9)
+            ->count();
+    }
+
+    public function resikoOct()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 10)
+            ->count();
+    }
+
+    public function resikoNov()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 11)
+            ->count();
+    }
+
+    public function resikoDes()
+    {
+        $data = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 12)
+            ->count();
+    }
+
+
 }

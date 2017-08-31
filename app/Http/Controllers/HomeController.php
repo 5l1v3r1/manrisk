@@ -99,13 +99,13 @@ class HomeController extends Controller
 
     public function findSkorDampak(Request $req)
     {
-        $sd = MDAMPAK::where('id_dampak', $req->id_dampak)->get();
+        $sd = MDAMPAK::where('id_dampak', $req->id_dampak)->first();
         return response()->json($sd);
     }
 
     public function findSkorKemungkinan(Request $req)
     {
-        $sk = MKEMUNGKINANTERJADI::where('id_kemungkinan', $req->id_kemungkinan)->get();
+        $sk = MKEMUNGKINANTERJADI::where('id_kemungkinan', $req->id_kemungkinan)->first();
         return response()->json($sk);
     }
 

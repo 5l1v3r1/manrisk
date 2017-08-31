@@ -57,9 +57,6 @@
 					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
 					</a></li>
-					<li><a class="" href="{{route('admin.master.actionplan')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Action Plan
-					</a></li>
 					<li><a class="" href="{{route('admin.master.program')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Program
 					</a></li>
@@ -106,10 +103,10 @@
 					      <thead>
 					        <tr>
 										<th width="3%">ID</th>
-										<th>Judul Program</th>
 										<th>Action Plan</th>
-										<th>Resiko</th>
+										<th>Judul Program</th>
 										<th>Sasaran</th>
+										<th>Rencana Anggaran</th>
 										<th>Waktu Pelaksanaan</th>
 										<th>Indikator Kegiatan</th>
 										<th>Luaran Dampak</th>
@@ -126,14 +123,12 @@
 									@foreach ($data as $d)
 										<tr>
 											<td width="3%">{{$d->id_detail_program}}</td>
-											<td>{{$d->nama_judul_program}}</td>
-											<td>{{$d->nama_aspek_terdampak}}</td>
 											<td>{{$d->nama_action_plan}}</td>
-											<td>{{$d->deskripsi_resiko}}</td>
+											<td>{{$d->nama_judul_program}}</td>
 											<td>{{$d->unit_sasaran}}</td>
 											<td>{{$d->rencana_anggaran}}</td>
 											<td>{{$d->waktu_pelaksanaan}}</td>
-											<td>{{$d->indikator_pelaksanaan}}</td>
+											<td>{{$d->indikator_kegiatan}}</td>
 											<td>{{$d->luaran_dampak}}</td>
 											<td>{{$d->status_capaian}}</td>
 											<td>{{$d->tahun}}</td>

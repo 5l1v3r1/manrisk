@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Master Action Plan</title>
+	<title>Action Plan</title>
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
@@ -56,9 +56,6 @@
 					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
 					</a></li>
-					<li><a class="" href="{{route('admin.master.actionplan')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Action Plan
-					</a></li>
 					<li><a class="" href="{{route('admin.master.program')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Program
 					</a></li>
@@ -88,7 +85,6 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li>Master</li>
 				<li class="active">Action Plan</li>
 			</ol>
 		</div><!--/.row-->
@@ -106,8 +102,8 @@
 					      <thead>
 					        <tr>
 										<th>ID</th>
+										<th>Deskripsi Resiko</th>
 										<th>Nama Action Plan</th>
-										<th>Edit</th>
 					        </tr>
 					      </thead>
 					    </table>
