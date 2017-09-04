@@ -1,5 +1,73 @@
 var randomScalingFactor = function(){ return Math.round(Math.random()*10)};
 
+// $.ajax({
+// 	type:'get',
+// 	url:'{!!URL::to('jan')!!}',
+// 	data:{""},
+// 	dataType: "json",
+// 	success: function(response){
+// 			var jan = response;
+// 	},
+// });
+//
+// $.ajax({
+// 	type:'get',
+// 	url:'{!!URL::to('ags')!!}',
+// 	data:{""},
+// 	dataType: "json",
+// 	success: function(response){
+// 			var ags = response;
+// 	},
+// });
+
+
+$(function(){
+  $.getJSON("/chartdata", function (result) {
+
+    var labels = [],data=[];
+    for (var i = 0; i < result.length; i++) {
+        labels.push(result[i].month);
+        data.push(result[i].projects);
+    }
+
+		var lineChartData = {
+			labels : ["January","February","March","April","May","June","July","August","September","October","November","December"],
+			datasets : [
+				{
+					label: "My First dataset",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : data
+				},
+				{
+					label: "My Second dataset",
+					fillColor : "rgba(48, 164, 255, 0.2)",
+					strokeColor : "rgba(48, 164, 255, 1)",
+					pointColor : "rgba(48, 164, 255, 1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(48, 164, 255, 1)",
+					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				}
+			]
+
+		}
+
+    var buyers = document.getElementById('projects-graph').getContext('2d');
+
+		var chartInstance = new Chart(buyers, {
+		    type: 'line',
+		    data: buyerData,
+		});
+  });
+});
+
+
+
 	var lineChartData = {
 		labels : ["January","February","March","April","May","June","July","August","September","October","November","December"],
 		datasets : [

@@ -147,6 +147,21 @@
 		</div><!--/.row-->
 
 		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Risks Traffic Overview
+						<span class="pull-right clickable panel-toggle panel-button-tab"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+							<canvas class="main-chart" id="projects-graph" height="200" width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->		
+
+		<div class="row">
 			<div class="col-sm-12">
 				<p class="back-link">Risk Mangement <a href="https://www.unair.ac.id">Airlangga University</a></p>
 			</div>

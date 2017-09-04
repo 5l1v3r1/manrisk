@@ -198,7 +198,8 @@ class AdminController extends Controller
 
     public function showResiko()
     {
-        $data = RESIKO::join('m_dampak', 'resiko.id_dampak', '=', 'm_dampak.id_dampak')
+        $data = RESIKO::orderBy('id_resiko')
+            ->join('m_dampak', 'resiko.id_dampak', '=', 'm_dampak.id_dampak')
             ->join('aspek_terdampak', 'resiko.id_aspek_terdampak', '=', 'aspek_terdampak.id_aspek_terdampak')
             ->join('m_kemungkinan_terjadi', 'resiko.id_kemungkinan', '=', 'm_kemungkinan_terjadi.id_kemungkinan')
             ->join('master_resiko', 'resiko.id_master_resiko', '=', 'master_resiko.id_master_resiko')
@@ -212,7 +213,6 @@ class AdminController extends Controller
     {
         $data = DETAILPROGRAM::join('judul_program', 'detail_program.id_judul_program', '=', 'judul_program.id_judul_program')
             ->join('action_plan', 'detail_program.id_action_plan', '=', 'action_plan.id_action_plan')
-            ->join('resiko', 'detail_program.id_resiko', '=', 'resiko.id_resiko')
             ->get();
         return view('admin.admindetailprogram', compact('data'));
     }
@@ -224,6 +224,7 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 1)
             ->count();
+        return response()->json($data);
     }
 
     public function resikoFeb()
@@ -231,6 +232,7 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 2)
             ->count();
+        return response()->json($data);
     }
 
     public function resikoMar()
@@ -238,6 +240,7 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 3)
             ->count();
+        return response()->json($data);
     }
 
     public function resikoApr()
@@ -245,6 +248,7 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 4)
             ->count();
+        return response()->json($data);
     }
 
     public function resikoMay()
@@ -252,6 +256,7 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 5)
             ->count();
+        return response()->json($data);
     }
 
     public function resikoJun()
@@ -259,6 +264,7 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 6)
             ->count();
+        return response()->json($data);
     }
 
     public function resikoJul()
@@ -266,6 +272,7 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 7)
             ->count();
+        return response()->json($data);
     }
 
     public function resikoAgs()
@@ -273,6 +280,7 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 8)
             ->count();
+        return response()->json($data);
     }
 
     public function resikoSep()
@@ -280,6 +288,7 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 9)
             ->count();
+        return response()->json($data);
     }
 
     public function resikoOct()
@@ -287,6 +296,7 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 10)
             ->count();
+        return response()->json($data);
     }
 
     public function resikoNov()
@@ -294,6 +304,7 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 11)
             ->count();
+        return response()->json($data);
     }
 
     public function resikoDes()
@@ -301,6 +312,16 @@ class AdminController extends Controller
         $data = RESIKO::whereYear('created_at', '=', date('y'))
             ->whereMonth('created_at', '=', 12)
             ->count();
+        return response()->json($data);
+    }
+
+    public function chartdata()
+    {
+        $devlist = RESIKO::select('MONTHNAME(updated_at) as month', "DATE_FORMAT(updated_at,'%Y-%m') as monthNum", 'count(*) as projects')
+            ->groupBy('monthNum')
+            ->get();
+
+        return $devlist;
     }
 
 
