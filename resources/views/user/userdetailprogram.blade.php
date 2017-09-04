@@ -81,7 +81,6 @@
 					        <tr>
 										<th>Judul Program</th>
 										<th>Action Plan</th>
-										<th>Resiko</th>
 										<th>Sasaran</th>
 										<th>Rencana Anggaran</th>
 										<th>Waktu Pelaksanaan</th>
@@ -100,12 +99,9 @@
 										<tr>
 											<td>{{$d->nama_judul_program}}</td>
 											<td>{{$d->nama_action_plan}}</td>
-											<td>{{$d->deskripsi_resiko}}</td>
 											<td>{{$d->unit_sasaran}}</td>
 											<td>{{$d->rencana_anggaran}}</td>
-											<td>@php
-											echo $d->waktu_pelaksanaan->format('d-m-Y');
-											@endphp</td>
+											<td>{{$d->waktu_pelaksanaan}}</td>
 											<td>{{$d->indikator_kegiatan}}</td>
 											<td>{{$d->luaran_dampak}}</td>
 											<td>{{$d->status_capaian}}</td>
@@ -138,17 +134,6 @@
 													<select id="id_judul_program" type="number" class="form-control" name="id_judul_program" required autofocus>
 															@foreach ($jp as $jp)
 																	<option value="{{$jp->id_judul_program}}">{{$jp->nama_judul_program}}</option>
-															@endforeach
-											    </select>
-											</div>
-									</div>
-									<div class="form-group">
-											<label for="id_resiko" class="col-md-4 control-label">Resiko</label>
-
-											<div class="col-md-6">
-													<select id="id_resiko" type="number" class="form-control" name="id_resiko" required autofocus>
-															@foreach ($rs as $rs)
-																	<option value="{{$rs->id_resiko}}">{{$rs->deskripsi_resiko}}</option>
 															@endforeach
 											    </select>
 											</div>

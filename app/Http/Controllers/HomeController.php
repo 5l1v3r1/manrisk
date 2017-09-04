@@ -40,7 +40,8 @@ class HomeController extends Controller
         //dd($d);
         $kt = MKEMUNGKINANTERJADI::orderBy('id_kemungkinan')->get();
         //dd($kt);
-        $data = RESIKO::join('m_dampak', 'resiko.id_dampak', '=', 'm_dampak.id_dampak')
+        $data = RESIKO::orderBy('id_resiko')
+            ->join('m_dampak', 'resiko.id_dampak', '=', 'm_dampak.id_dampak')
             ->join('aspek_terdampak', 'resiko.id_aspek_terdampak', '=', 'aspek_terdampak.id_aspek_terdampak')
             ->join('m_kemungkinan_terjadi', 'resiko.id_kemungkinan', '=', 'm_kemungkinan_terjadi.id_kemungkinan')
             ->join('master_resiko', 'resiko.id_master_resiko', '=', 'master_resiko.id_master_resiko')
@@ -71,8 +72,7 @@ class HomeController extends Controller
         $jp = JUDULPROGRAM::orderBy('id_judul_program')->get();
         $ap = ACTIONPLAN::orderBy('id_action_plan')->get();
         $rs = RESIKO::orderBy('id_resiko')->get();
-        $data = DETAILPROGRAM::join('resiko', 'detail_program.id_resiko', '=', 'resiko.id_resiko')
-            ->join('judul_program', 'detail_program.id_judul_program', '=', 'judul_program.id_judul_program')
+        $data = DETAILPROGRAM::join('judul_program', 'detail_program.id_judul_program', '=', 'judul_program.id_judul_program')
             ->join('action_plan', 'detail_program.id_action_plan', '=', 'action_plan.id_action_plan')
             ->where('detail_program.created_by', '=', AUTH::user()->username)
             ->get();
@@ -84,7 +84,6 @@ class HomeController extends Controller
         $d = new DETAILPROGRAM;
         $d->id_judul_program = $req->id_judul_program;
         $d->id_action_plan = $req->id_action_plan;
-        $d->id_resiko = $req->id_resiko;
         $d->unit_sasaran = $req->unit_sasaran;
         $d->rencana_anggaran = $req->rencana_anggaran;
         $d->waktu_pelaksanaan = $req->waktu_pelaksanaan;
