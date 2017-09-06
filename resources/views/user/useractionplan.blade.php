@@ -3,10 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Detail Program</title>
+	<title>Action Plan</title>
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/datepicker3.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/table.css') }}" rel="stylesheet" type="text/css">
 
@@ -43,7 +42,8 @@
 		<div class="divider"></div>
 		<ul class="nav menu">
 			<li><a href="{{route('resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
-			<li class="active"><a href="{{route('detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
+			<li class="active"><a href="{{route('actionplan')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Action Plan</a></li>
+			<li><a href="{{route('detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -63,13 +63,13 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Detail Program</li>
+				<li class="active">Action Plan</li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Detail Program</h1>
+				<h1 class="page-header">Action Plan</h1>
 			</div>
 		</div><!--/.row-->
 
@@ -79,15 +79,9 @@
 					    <table cellpadding="0" cellspacing="0" border="0">
 					      <thead>
 					        <tr>
-										<th>Judul Program</th>
-										<th>Action Plan</th>
-										<th>Sasaran</th>
-										<th>Rencana Anggaran</th>
-										<th>Waktu Pelaksanaan</th>
-										<th>Indikator Kegiatan</th>
-										<th>Luaran Dampak</th>
-										<th>Status Capaian</th>
-										<th>Tahun</th>
+										<th>ID Action Plan</th>
+										<th>Deskripsi Resiko</th>
+										<th>Action</th>
 					        </tr>
 					      </thead>
 					    </table>
@@ -97,15 +91,9 @@
 					      <tbody>
 									@foreach ($data as $d)
 										<tr>
-											<td>{{$d->nama_judul_program}}</td>
+											<td>{{$d->id_action_plan}}</td>
+											<td>{{$d->deskripsi_resiko}}</td>
 											<td>{{$d->nama_action_plan}}</td>
-											<td>{{$d->unit_sasaran}}</td>
-											<td>{{$d->rencana_anggaran}}</td>
-											<td>{{$d->waktu_pelaksanaan}}</td>
-											<td>{{$d->indikator_kegiatan}}</td>
-											<td>{{$d->luaran_dampak}}</td>
-											<td>{{$d->status_capaian}}</td>
-											<td>{{$d->tahun}}</td>
 										</tr>
 									@endforeach
 					      </tbody>
@@ -122,81 +110,67 @@
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Tambah Detail Program</h4>
+			        <h4 class="modal-title">Tambah Action Plan</h4>
 			      </div>
 			      <div class="modal-body">
-							<form class="form-horizontal" action='{{route('detailprogram.add')}}' method='post'>
+							<form class="form-horizontal" action='{{route('actionplan.add')}}' method='post'>
 									{{ csrf_field() }}
-
 									<div class="form-group">
-											<label for="id_action_plan" class="col-md-4 control-label">Action plan</label>
+											<label for="id_master_resiko" class="col-md-4 control-label">Resiko</label>
 
 											<div class="col-md-6">
-													<select id="id_action_plan" type="number" class="form-control" name="id_action_plan" required autofocus>
-															@foreach ($ap as $ap)
-																	<option value="{{$ap->id_action_plan}}">{{$ap->nama_action_plan}}</option>
+													<select id="id_master_resiko" type="number" class="form-control" name="id_master_resiko" required autofocus>
+															@foreach ($mr as $mr)
+																	<option value="{{$mr->id_master_resiko}}">{{$mr->nm_pemicu_resiko}} ({{$mr->jenis_pemicu}})</option>
 															@endforeach
 											    </select>
 											</div>
 									</div>
 									<div class="form-group">
-											<label for="id_judul_program" class="col-md-4 control-label">Judul program</label>
+											<label for="deskripsi_resiko" class="col-md-4 control-label">Deskripsi resiko</label>
 
 											<div class="col-md-6">
-													<select id="id_judul_program" type="number" class="form-control" name="id_judul_program" required autofocus>
-															@foreach ($jp as $jp)
-																	<option value="{{$jp->id_judul_program}}">{{$jp->nama_judul_program}}</option>
+													<input id="deskripsi_resiko" type="text" class="form-control" name="deskripsi_resiko" required autofocus>
+											</div>
+									</div>
+									<div class="form-group">
+											<label for="id_aspek_terdampak" class="col-md-4 control-label">Aspek Terdampak</label>
+
+											<div class="col-md-6">
+													<select id="id_aspek_terdampak" type="number" class="form-control" name="id_aspek_terdampak" required autofocus>
+															@foreach ($at as $at)
+																	<option value="{{$at->id_aspek_terdampak}}">{{$at->nama_aspek_terdampak}}</option>
 															@endforeach
 											    </select>
 											</div>
 									</div>
 									<div class="form-group">
-											<label for="unit_sasaran" class="col-md-4 control-label">Unit sasaran</label>
+											<label for="id_kemungkinan" class="col-md-4 control-label">Kemungkinan terjadi</label>
 
 											<div class="col-md-6">
-													<input id="unit_sasaran" type="text" class="form-control" name="unit_sasaran" required autofocus>
+													<select id="id_kemungkinan" type="number" class="form-control" name="id_kemungkinan" required autofocus>
+															@foreach ($kt as $kt)
+																	<option value="{{$kt->id_kemungkinan}}">{{$kt->nama_kemungkinan}} ({{$kt->skor_kemungkinan}})</option>
+															@endforeach
+											    </select>
 											</div>
 									</div>
 									<div class="form-group">
-											<label for="rencana_anggaran" class="col-md-4 control-label">Rencana anggaran</label>
+											<label for="id_dampak" class="col-md-4 control-label">Dampak</label>
 
 											<div class="col-md-6">
-													<input id="rencana_anggaran" type="number" class="form-control" name="rencana_anggaran" required autofocus>
+													<select id="id_dampak" type="number" class="form-control" name="id_dampak" required autofocus>
+															@foreach ($dm as $d)
+																	<option value="{{$d->id_dampak}}">{{$d->nama_dampak}} ({{$d->skor_dampak}})</option>
+															@endforeach
+											    </select>
 											</div>
 									</div>
 									<div class="form-group">
-											<label for="waktu_pelaksanaan" class="col-md-4 control-label">Waktu pelaksanaan</label>
+											<label for="skor" class="col-md-4 control-label">Skor</label>
 
 											<div class="col-md-6">
-													<input id="waktu_pelaksanaan" type="datetime" class="form-control datepicker"  name="waktu_pelaksanaan" required autofocus>
-											</div>
-									</div>
-									<div class="form-group">
-											<label for="indikator_kegiatan" class="col-md-4 control-label">Indikator kegiatan</label>
-
-											<div class="col-md-6">
-													<input id="indikator_kegiatan" type="text" class="form-control" name="indikator_kegiatan" required autofocus>
-											</div>
-									</div>
-									<div class="form-group">
-											<label for="luaran_dampak" class="col-md-4 control-label">Luaran dampak</label>
-
-											<div class="col-md-6">
-													<input id="luaran_dampak" type="text" class="form-control" name="luaran_dampak" required autofocus>
-											</div>
-									</div>
-									<div class="form-group">
-											<label for="status_capaian" class="col-md-4 control-label">Status capaian</label>
-
-											<div class="col-md-6">
-													<input id="status_capaian" type="number" class="form-control" name="status_capaian" required autofocus>
-											</div>
-									</div>
-									<div class="form-group">
-											<label for="tahun" class="col-md-4 control-label">Tahun</label>
-
-											<div class="col-md-6">
-													<input id="tahun" type="number" class="form-control" name="tahun" required autofocus>
+													<p id="skor" class="form-control">1</p>
 											</div>
 									</div>
 									<input type='hidden' name='created_by' id='created_by' value='{{ Auth::user()->username }}'/>
@@ -221,21 +195,63 @@
 
 	<script type="text/javascript" src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 	<script>
-			$('#myModal').on('show.bs.modal', function(e) {
-					var idk = $(e.relatedTarget).data('idk');
-					$(e.currentTarget).find('input[name="id_dampak"]').val(idk);
-			});
+			// $('#myModal').on('show.bs.modal', function(e) {
+			// 		var idk = $(e.relatedTarget).data('idk');
+			// 		$(e.currentTarget).find('input[name="id_dampak"]').val(idk);
+			// });
 
 			$('#add').on('show.bs.modal');
 
-			$(function(){
-				   $('.datepicker').datepicker({
-				      format: 'dd-mm-yyyy'
-				    });
-				});
+			$('#id_kemungkinan').on('change',function(){
+					var dampak = document.getElementById('id_dampak').value;
+					var kemungkinan = document.getElementById('id_kemungkinan').value;
+					$.ajax({
+						type:'get',
+						url:'{!!URL::to('findSkorKemungkinan')!!}',
+						data:{'id_kemungkinan':kemungkinan},
+						dataType: "json",
+						success: function(response){
+								$.ajax({
+									type:'get',
+									url:'{!!URL::to('findSkorDampak')!!}',
+									data:{'id_dampak':dampak},
+									dataType: "json",
+									success: function(a){
+											var skor = response.skor_kemungkinan * a.skor_dampak;
+											document.getElementById("skor").innerHTML = skor;
+							    },
+								});
+				    },
+					});
+
+     	});
+
+			$('#id_dampak').on('change',function(){
+					var dampak = document.getElementById('id_dampak').value;
+					var kemungkinan = document.getElementById('id_kemungkinan').value;
+					$.ajax({
+						type:'get',
+						url:'{!!URL::to('findSkorKemungkinan')!!}',
+						data:{'id_kemungkinan':kemungkinan},
+						dataType: "json",
+						success: function(response){
+								$.ajax({
+									type:'get',
+									url:'{!!URL::to('findSkorDampak')!!}',
+									data:{'id_dampak':dampak},
+									dataType: "json",
+									success: function(a){
+											var skor = response.skor_kemungkinan * a.skor_dampak;
+											document.getElementById("skor").innerHTML = skor;
+							    },
+								});
+				    },
+					});
+
+     	});
+
 	</script>
 
 </body>
