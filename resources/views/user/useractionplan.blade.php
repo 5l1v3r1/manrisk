@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Action Plan</title>
+	<title>Tindak Lanjut</title>
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
@@ -42,8 +42,7 @@
 		<div class="divider"></div>
 		<ul class="nav menu">
 			<li><a href="{{route('resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
-			<li class="active"><a href="{{route('actionplan')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Action Plan</a></li>
-			<li><a href="{{route('detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
+			<li class="active"><a href="{{route('actionplan')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Tindak Lanjut</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -63,13 +62,13 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Action Plan</li>
+				<li class="active">Tindak Lanjut</li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Action Plan</h1>
+				<h1 class="page-header">Tindak Lanjut</h1>
 			</div>
 		</div><!--/.row-->
 
@@ -80,8 +79,13 @@
 					      <thead>
 					        <tr>
 										<th>ID Action Plan</th>
-										<th>Deskripsi Resiko</th>
-										<th>Action</th>
+										<th>Resiko</th>
+										<th>Aspek Terdampak</th>
+										<th>Treatment</th>
+										<th>Waktu Pelaksanaan</th>
+										<th>Status</th>
+										<th>PIC</th>
+										<th>Keterangan</th>
 					        </tr>
 					      </thead>
 					    </table>
@@ -120,8 +124,8 @@
 
 											<div class="col-md-6">
 													<select id="id_master_resiko" type="number" class="form-control" name="id_master_resiko" required autofocus>
-															@foreach ($mr as $mr)
-																	<option value="{{$mr->id_master_resiko}}">{{$mr->nm_pemicu_resiko}} ({{$mr->jenis_pemicu}})</option>
+															@foreach ($rs as $rs)
+																	<option value="{{$rs->id_resiko}}">{{$rs->deskripsi_resiko}}</option>
 															@endforeach
 											    </select>
 											</div>

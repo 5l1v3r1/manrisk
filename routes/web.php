@@ -28,6 +28,8 @@ Route::post('/detailprogram/add', 'HomeController@addDetailProgram')->name('deta
 Route::get('/findSkorDampak', 'HomeController@findSkorDampak')->name('findskordampak');
 Route::get('/findSkorKemungkinan', 'HomeController@findSkorKemungkinan')->name('findskorkemungkinan');
 
+Route::get('/actionplan', 'HomeController@showActionPlan')->name('actionplan');
+
 Route::get('/jan', 'AdminController@resikoJan')->name('resikoJan');
 Route::get('/ags', 'AdminController@resikoAgs')->name('resikoAgs');
 Route::get('/chartdata', 'AdminController@chartdata')->name('chartdata');

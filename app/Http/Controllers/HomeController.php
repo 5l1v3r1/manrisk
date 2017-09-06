@@ -79,6 +79,11 @@ class HomeController extends Controller
         return view('user.userdetailprogram', compact('data','jp', 'ap', 'rs'));
     }
 
+    public function showActionPlan()
+    {
+      # code...
+    }
+
     public function addDetailProgram(Request $req)
     {
         $d = new DETAILPROGRAM;

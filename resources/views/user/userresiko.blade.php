@@ -42,6 +42,7 @@
 		<div class="divider"></div>
 		<ul class="nav menu">
 			<li class="active"><a href="{{route('resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
+			<li><a href="{{route('actionplan')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Action Plan</a></li>
 			<li><a href="{{route('detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
@@ -79,12 +80,12 @@
 					      <thead>
 					        <tr>
 										<th>Deskripsi Resiko</th>
+										<th>Sumber Resiko</th>
 										<th>Aspek Terdampak</th>
+										<th>Peluang terjadi</th>
 										<th>Dampak</th>
-										<th>Kemungkinan</th>
 										<th>Skor</th>
-										<th>Pemicu</th>
-										<th>Jenis</th>
+										<th>Kategori</th>
 					        </tr>
 					      </thead>
 					    </table>
@@ -95,15 +96,19 @@
 									@foreach ($data as $d)
 										<tr>
 											<td>{{$d->deskripsi_resiko}}</td>
-											<td>{{$d->nama_aspek_terdampak}}</td>
-											<td>{{$d->nama_dampak}}</td>
-											<td>{{$d->nama_kemungkinan}}</td>
-											<td>{{$d->total_skor}}</td>
 											<td>{{$d->nm_pemicu_resiko}}</td>
-											<td>@if ($d->jenis_pemicu==1)
-												Internal
-											@else
-												External
+											<td>{{$d->nama_aspek_terdampak}}</td>
+											<td>{{$d->nama_kemungkinan}}</td>
+											<td>{{$d->nama_dampak}}</td>
+											<td>{{$d->total_skor}}</td>
+											<td>@if ($d->total_skor<=3)
+												Rendah
+											@endif
+											@if ($d->total_skor>3&&$d->total_skor<=9)
+												Sedang
+											@endif
+											@if ($d->total_skor>9)
+												Tinggi
 											@endif</td>
 										</tr>
 									@endforeach

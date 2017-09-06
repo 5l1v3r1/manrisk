@@ -15,11 +15,6 @@ class ACTIONPLAN extends Model {
     //public $incrementing = false;
     protected $fillable = ['ID_ACTION_PLAN', 'NAMA_ACTION_PLAN', 'ID_RESIKO'];
 
-
-    public function dETAILPROGRAMs() {
-        return $this->hasMany(\App\DETAILPROGRAM::class, 'ID_ACTION_PLAN', 'ID_ACTION_PLAN');
-    }
-
     public function rESIKO() {
         return $this->belongsTo(\App\RESIKO::class, 'ID_RESIKO', 'ID_RESIKO');
     }
