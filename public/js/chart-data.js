@@ -23,10 +23,8 @@ var randomScalingFactor = function(){ return Math.round(Math.random()*10)};
 
 $(function(){
   $.getJSON("/chartdata", function (result) {
-
-    var labels = [],data=[];
+    var data=[];
     for (var i = 0; i < result.length; i++) {
-        labels.push(result[i].month);
         data.push(result[i].projects);
     }
 

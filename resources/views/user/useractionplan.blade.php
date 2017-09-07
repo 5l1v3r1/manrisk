@@ -97,7 +97,12 @@
 										<tr>
 											<td>{{$d->id_action_plan}}</td>
 											<td>{{$d->deskripsi_resiko}}</td>
+											<td>{{$d->nama_aspek_terdampak}}</td>
 											<td>{{$d->nama_action_plan}}</td>
+											<td>{{$d->waktu_pelaksanaan}}</td>
+											<td>{{$d->status_pelaksanaan}}</td>
+											<td>{{$d->pic}}</td>
+											<td>{{$d->keterangan}}</td>
 										</tr>
 									@endforeach
 					      </tbody>
@@ -120,10 +125,10 @@
 							<form class="form-horizontal" action='{{route('actionplan.add')}}' method='post'>
 									{{ csrf_field() }}
 									<div class="form-group">
-											<label for="id_master_resiko" class="col-md-4 control-label">Resiko</label>
+											<label for="id_resiko" class="col-md-4 control-label">Resiko</label>
 
 											<div class="col-md-6">
-													<select id="id_master_resiko" type="number" class="form-control" name="id_master_resiko" required autofocus>
+													<select id="id_resiko" type="number" class="form-control" name="id_resiko" required autofocus>
 															@foreach ($rs as $rs)
 																	<option value="{{$rs->id_resiko}}">{{$rs->deskripsi_resiko}}</option>
 															@endforeach
@@ -131,50 +136,42 @@
 											</div>
 									</div>
 									<div class="form-group">
-											<label for="deskripsi_resiko" class="col-md-4 control-label">Deskripsi resiko</label>
+											<label for="nama_action_plan" class="col-md-4 control-label">Nama action plan</label>
 
 											<div class="col-md-6">
-													<input id="deskripsi_resiko" type="text" class="form-control" name="deskripsi_resiko" required autofocus>
+													<input id="nama_action_plan" type="text" class="form-control" name="nama_action_plan" required autofocus>
 											</div>
 									</div>
 									<div class="form-group">
-											<label for="id_aspek_terdampak" class="col-md-4 control-label">Aspek Terdampak</label>
+											<label for="waktu_pelaksanaan" class="col-md-4 control-label">Waktu pelaksanaan</label>
 
 											<div class="col-md-6">
-													<select id="id_aspek_terdampak" type="number" class="form-control" name="id_aspek_terdampak" required autofocus>
-															@foreach ($at as $at)
-																	<option value="{{$at->id_aspek_terdampak}}">{{$at->nama_aspek_terdampak}}</option>
-															@endforeach
+													<input id="waktu_pelaksanaan" type="datetime" class="form-control datepicker" name="waktu_pelaksanaan" required autofocus>
+											</div>
+									</div>
+									<div class="form-group">
+											<label for="status_pelaksanaan" class="col-md-4 control-label">Status</label>
+
+											<div class="col-md-6">
+													<select id="status_pelaksanaan" type="number" class="form-control" name="status_pelaksanaan" required autofocus>
+															<option value="1">Belum Terlaksana</option>
+															<option value="2">Sedang Dilaksanakan</option>
+															<option value="3">Telah Terlaksana</option>
 											    </select>
 											</div>
 									</div>
 									<div class="form-group">
-											<label for="id_kemungkinan" class="col-md-4 control-label">Kemungkinan terjadi</label>
+											<label for="pic" class="col-md-4 control-label">PIC</label>
 
 											<div class="col-md-6">
-													<select id="id_kemungkinan" type="number" class="form-control" name="id_kemungkinan" required autofocus>
-															@foreach ($kt as $kt)
-																	<option value="{{$kt->id_kemungkinan}}">{{$kt->nama_kemungkinan}} ({{$kt->skor_kemungkinan}})</option>
-															@endforeach
-											    </select>
+													<input id="pic" type="text" class="form-control" name="pic" required autofocus>
 											</div>
 									</div>
 									<div class="form-group">
-											<label for="id_dampak" class="col-md-4 control-label">Dampak</label>
+											<label for="keterangan" class="col-md-4 control-label">Keterangan</label>
 
 											<div class="col-md-6">
-													<select id="id_dampak" type="number" class="form-control" name="id_dampak" required autofocus>
-															@foreach ($dm as $d)
-																	<option value="{{$d->id_dampak}}">{{$d->nama_dampak}} ({{$d->skor_dampak}})</option>
-															@endforeach
-											    </select>
-											</div>
-									</div>
-									<div class="form-group">
-											<label for="skor" class="col-md-4 control-label">Skor</label>
-
-											<div class="col-md-6">
-													<p id="skor" class="form-control">1</p>
+													<input id="keterangan" type="text" class="form-control" name="keterangan" required autofocus>
 											</div>
 									</div>
 									<input type='hidden' name='created_by' id='created_by' value='{{ Auth::user()->username }}'/>

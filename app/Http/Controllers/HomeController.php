@@ -7,8 +7,6 @@ use App\ACTIONPLAN;
 use App\RESIKO;
 use App\MASTERRESIKO;
 use App\MDAMPAK;
-use App\JUDULPROGRAM;
-use App\DETAILPROGRAM;
 use App\ASPEKTERDAMPAK;
 use App\MKEMUNGKINANTERJADI;
 use AUTH;
@@ -67,39 +65,32 @@ class HomeController extends Controller
         return $this->index();
     }
 
-    public function showDetailProgram()
-    {
-        $jp = JUDULPROGRAM::orderBy('id_judul_program')->get();
-        $ap = ACTIONPLAN::orderBy('id_action_plan')->get();
-        $rs = RESIKO::orderBy('id_resiko')->get();
-        $data = DETAILPROGRAM::join('judul_program', 'detail_program.id_judul_program', '=', 'judul_program.id_judul_program')
-            ->join('action_plan', 'detail_program.id_action_plan', '=', 'action_plan.id_action_plan')
-            ->where('detail_program.created_by', '=', AUTH::user()->username)
-            ->get();
-        return view('user.userdetailprogram', compact('data','jp', 'ap', 'rs'));
-    }
+//=============================================================================================================================
 
     public function showActionPlan()
     {
-      # code...
+        $rs = RESIKO::orderBy('id_resiko')->get();
+        $data = ACTIONPLAN::join('resiko', 'action_plan.id_resiko', '=', 'resiko.id_resiko')
+            ->join('aspek_terdampak', 'resiko.id_aspek_terdampak', '=', 'aspek_terdampak.id_aspek_terdampak')
+            ->get();
+        return view('user.useractionplan', compact('data', 'rs'));
     }
 
-    public function addDetailProgram(Request $req)
+    public function addActionPlan(Request $req)
     {
-        $d = new DETAILPROGRAM;
-        $d->id_judul_program = $req->id_judul_program;
+        $d = new ACTIONPLAN;
         $d->id_action_plan = $req->id_action_plan;
-        $d->unit_sasaran = $req->unit_sasaran;
-        $d->rencana_anggaran = $req->rencana_anggaran;
+        $d->nama_action_plan = $req->nama_action_plan;
+        $d->id_resiko = $req->id_resiko;
         $d->waktu_pelaksanaan = $req->waktu_pelaksanaan;
-        $d->indikator_kegiatan = $req->indikator_kegiatan;
-        $d->luaran_dampak = $req->luaran_dampak;
-        $d->status_capaian = $req->status_capaian;
-        $d->tahun = $req->tahun;
-        $d->created_by = $req->created_by;
+        $d->status_pelaksanaan = $req->status_pelaksanaan;
+        $d->pic = $req->pic;
+        $d->keterangan = $req->keterangan;
         $d->save();
-        return $this->showDetailProgram();
+        return $this->showActionPlan();
     }
+
+//=============================================================================================================================
 
     public function findSkorDampak(Request $req)
     {

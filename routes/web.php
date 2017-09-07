@@ -22,16 +22,12 @@ Auth::routes();
 Route::get('/resiko', 'HomeController@index')->name('resiko');
 Route::post('/resiko/add', 'HomeController@addResiko')->name('resiko.add');
 
-Route::get('/detailprogram', 'HomeController@showDetailProgram')->name('detailprogram');
-Route::post('/detailprogram/add', 'HomeController@addDetailProgram')->name('detailprogram.add');
-
 Route::get('/findSkorDampak', 'HomeController@findSkorDampak')->name('findskordampak');
 Route::get('/findSkorKemungkinan', 'HomeController@findSkorKemungkinan')->name('findskorkemungkinan');
 
 Route::get('/actionplan', 'HomeController@showActionPlan')->name('actionplan');
+Route::post('/actionplan/add', 'HomeController@addActionPlan')->name('actionplan.add');
 
-Route::get('/jan', 'AdminController@resikoJan')->name('resikoJan');
-Route::get('/ags', 'AdminController@resikoAgs')->name('resikoAgs');
 Route::get('/chartdata', 'AdminController@chartdata')->name('chartdata');
 
 Route::prefix('admin')->group(function(){

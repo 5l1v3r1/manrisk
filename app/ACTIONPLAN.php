@@ -13,7 +13,7 @@ class ACTIONPLAN extends Model {
     public $timestamps = false;
     protected $primaryKey = 'ID_ACTION_PLAN';
     //public $incrementing = false;
-    protected $fillable = ['ID_ACTION_PLAN', 'NAMA_ACTION_PLAN', 'ID_RESIKO'];
+    protected $fillable = ['ID_ACTION_PLAN', 'NAMA_ACTION_PLAN', 'ID_RESIKO', 'WAKTU_PELAKSANAAN', 'STATUS_PELAKSANAAN', 'PIC', 'KETERANGAN'];
 
     public function rESIKO() {
         return $this->belongsTo(\App\RESIKO::class, 'ID_RESIKO', 'ID_RESIKO');

@@ -9,8 +9,6 @@ use App\ADMIN;
 use App\RESIKO;
 use App\MASTERRESIKO;
 use App\MDAMPAK;
-use App\JUDULPROGRAM;
-use App\DETAILPROGRAM;
 use App\ASPEKTERDAMPAK;
 use App\MKEMUNGKINANTERJADI;
 
@@ -219,109 +217,58 @@ class AdminController extends Controller
 
     //===========================================================================================================================================================================================
 
-    public function resikoJan()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 1)
-            ->count();
-        return response()->json($data);
-    }
-
-    public function resikoFeb()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 2)
-            ->count();
-        return response()->json($data);
-    }
-
-    public function resikoMar()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 3)
-            ->count();
-        return response()->json($data);
-    }
-
-    public function resikoApr()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 4)
-            ->count();
-        return response()->json($data);
-    }
-
-    public function resikoMay()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 5)
-            ->count();
-        return response()->json($data);
-    }
-
-    public function resikoJun()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 6)
-            ->count();
-        return response()->json($data);
-    }
-
-    public function resikoJul()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 7)
-            ->count();
-        return response()->json($data);
-    }
-
-    public function resikoAgs()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 8)
-            ->count();
-        return response()->json($data);
-    }
-
-    public function resikoSep()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 9)
-            ->count();
-        return response()->json($data);
-    }
-
-    public function resikoOct()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 10)
-            ->count();
-        return response()->json($data);
-    }
-
-    public function resikoNov()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 11)
-            ->count();
-        return response()->json($data);
-    }
-
-    public function resikoDes()
-    {
-        $data = RESIKO::whereYear('created_at', '=', date('y'))
-            ->whereMonth('created_at', '=', 12)
-            ->count();
-        return response()->json($data);
-    }
-
     public function chartdata()
     {
-        $devlist = RESIKO::select('MONTHNAME(updated_at) as month', "DATE_FORMAT(updated_at,'%Y-%m') as monthNum", 'count(*) as projects')
-            ->groupBy('monthNum')
-            ->get();
+        $jan = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 1)
+            ->count();
 
-        return $devlist;
+        $feb = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 2)
+            ->count();
+
+        $mar = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 3)
+            ->count();
+
+        $apr = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 4)
+            ->count();
+
+        $mei = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 5)
+            ->count();
+
+        $jun = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 6)
+            ->count();
+
+        $jul = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 7)
+            ->count();
+
+        $ags = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 8)
+            ->count();
+
+        $sep = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=',9)
+            ->count();
+
+        $oct = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 10)
+            ->count();
+
+        $nov = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 11)
+            ->count();
+
+        $des = RESIKO::whereYear('created_at', '=', date('y'))
+            ->whereMonth('created_at', '=', 12)
+            ->count();
+
+        $data = array($jan,$feb,$mar,$apr,$mei,$jun,$jul,$ags,$sep,$oct,$nov,$des);
+        return $data;
     }
 
 

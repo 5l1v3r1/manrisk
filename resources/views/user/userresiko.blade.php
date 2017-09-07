@@ -43,7 +43,6 @@
 		<ul class="nav menu">
 			<li class="active"><a href="{{route('resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
 			<li><a href="{{route('actionplan')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Action Plan</a></li>
-			<li><a href="{{route('detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -137,7 +136,7 @@
 											<div class="col-md-6">
 													<select id="id_master_resiko" type="number" class="form-control" name="id_master_resiko" required autofocus>
 															@foreach ($mr as $mr)
-																	<option value="{{$mr->id_master_resiko}}">{{$mr->nm_pemicu_resiko}} ({{$mr->jenis_pemicu}})</option>
+																	<option value="{{$mr->id_master_resiko}}">{{$mr->nm_pemicu_resiko}}</option>
 															@endforeach
 											    </select>
 											</div>
