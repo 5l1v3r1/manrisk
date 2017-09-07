@@ -34,7 +34,7 @@ class AdminController extends Controller
         $data = [
           'risk' => RESIKO::count(),
           'user' => USER::count(),
-          'detpro' => DETAILPROGRAM::count(),
+          'ap' => ACTIONPLAN::count(),
           'admin' => ADMIN::count()
         ];
         return view('admin.admindashboard', compact('data'));
@@ -268,7 +268,7 @@ class AdminController extends Controller
             ->count();
 
         $data = array($jan,$feb,$mar,$apr,$mei,$jun,$jul,$ags,$sep,$oct,$nov,$des);
-        return $data;
+        return response()->json($data);
     }
 
 

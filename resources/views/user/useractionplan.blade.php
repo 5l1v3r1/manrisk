@@ -8,6 +8,7 @@
 	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/table.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/datepicker3.css') }}" rel="stylesheet" type="text/css">
 
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" type="text/css">
@@ -139,14 +140,14 @@
 											<label for="nama_action_plan" class="col-md-4 control-label">Nama action plan</label>
 
 											<div class="col-md-6">
-													<input id="nama_action_plan" type="text" class="form-control" name="nama_action_plan" required autofocus>
+													<input id="nama_action_plan" type="text"  class="form-control" name="nama_action_plan" required autofocus>
 											</div>
 									</div>
 									<div class="form-group">
 											<label for="waktu_pelaksanaan" class="col-md-4 control-label">Waktu pelaksanaan</label>
 
 											<div class="col-md-6">
-													<input id="waktu_pelaksanaan" type="datetime" class="form-control datepicker" name="waktu_pelaksanaan" required autofocus>
+													<input id="waktu_pelaksanaan" type="date" placeholder="yyyy-mm-dd" class="form-control" name="waktu_pelaksanaan" required autofocus>
 											</div>
 									</div>
 									<div class="form-group">
@@ -194,15 +195,16 @@
 		</div><!--/.row-->
 	</div>	<!--/.main-->
 
-	<script type="text/javascript" src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 	<script>
-			// $('#myModal').on('show.bs.modal', function(e) {
-			// 		var idk = $(e.relatedTarget).data('idk');
-			// 		$(e.currentTarget).find('input[name="id_dampak"]').val(idk);
-			// });
 
+		// $(function() {
+		// 	$("#waktu_pelaksanaan").datepicker({
+		// 		dateFormat: 'dd-mm-yy'});
+		// 	});
 			$('#add').on('show.bs.modal');
 
 			$('#id_kemungkinan').on('change',function(){

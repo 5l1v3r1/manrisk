@@ -107,9 +107,9 @@
 				</div>
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-blue panel-widget border-right">
-						<div class="row no-padding"><em class="fa fa-xl fa-info color-orange"></em>
-							<div class="large">{{$data['detpro']}}</div>
-							<div class="text-muted">Detail Program</div>
+						<div class="row no-padding"><em class="fa fa-xl fa-puzzle-piece color-orange"></em>
+							<div class="large">{{$data['ap']}}</div>
+							<div class="text-muted">Tindak Lanjut</div>
 						</div>
 					</div>
 				</div>
@@ -147,21 +147,6 @@
 		</div><!--/.row-->
 
 		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Risks Traffic Overview
-						<span class="pull-right clickable panel-toggle panel-button-tab"><em class="fa fa-toggle-up"></em></span></div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="main-chart" id="projects-graph" height="200" width="600"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->		
-
-		<div class="row">
 			<div class="col-sm-12">
 				<p class="back-link">Risk Mangement <a href="https://www.unair.ac.id">Airlangga University</a></p>
 			</div>
@@ -177,15 +162,25 @@
 	<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 	<script>
+		window.onload = function (){
+				$.ajax({
+					type:'get',
+					url:'{!!URL::to('chartdata')!!}',
+					dataType: "json",
+					success: function(response){
+							console.log(response);
+					},
+				});
+		}
 		window.onload = function () {
-	var chart1 = document.getElementById("line-chart").getContext("2d");
-	window.myLine = new Chart(chart1).Line(lineChartData, {
-	responsive: true,
-	scaleLineColor: "rgba(0,0,0,.2)",
-	scaleGridLineColor: "rgba(0,0,0,.05)",
-	scaleFontColor: "#c5c7cc"
-	});
-};
+				var chart1 = document.getElementById("line-chart").getContext("2d");
+				window.myLine = new Chart(chart1).Line(lineChartData, {
+				responsive: true,
+				scaleLineColor: "rgba(0,0,0,.2)",
+				scaleGridLineColor: "rgba(0,0,0,.05)",
+				scaleFontColor: "#c5c7cc"
+				});
+		};
 	</script>
 
 </body>
