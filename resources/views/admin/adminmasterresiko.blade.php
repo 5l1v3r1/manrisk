@@ -56,16 +56,13 @@
 					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
 					</a></li>
-					<li><a class="" href="{{route('admin.master.program')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Program
-					</a></li>
 					<li><a class="" href="{{route('admin.master.resiko')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Resiko
 					</a></li>
 				</ul>
 			</li>
 			<li><a href="{{route('admin.resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
-			<li><a href="{{route('admin.detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
+			<li><a href="{{route('admin.tindaklanjut')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Tindak Lanjut</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -86,13 +83,13 @@
 					<em class="fa fa-home"></em>
 				</a></li>
 				<li>Master</li>
-				<li class="active">Resiko</li>
+				<li class="active">Pemicu</li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Master Resiko</h1>
+				<h1 class="page-header">Faktor Pemicu</h1>
 			</div>
 		</div><!--/.row-->
 
@@ -104,7 +101,6 @@
 					        <tr>
 										<th>ID</th>
 										<th>Nama Pemicu</th>
-										<th>Jenis Pemicu</th>
 										<th>Edit</th>
 					        </tr>
 					      </thead>
@@ -117,11 +113,6 @@
 										<tr>
 											<td>{{$d->id_master_resiko}}</td>
 											<td>{{$d->nm_pemicu_resiko}}</td>
-											<td>@if ($d->jenis_pemicu==1)
-												Internal
-											@else
-												External
-											@endif</td>
 											<td>
 												<a data-toggle="modal" data-idk="{{$d->id_master_resiko}}" href="#myModal">
 												  <i class="fa fa-xl fa-pencil-square-o"></i>
@@ -144,7 +135,7 @@
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Edit Master Resiko</h4>
+			        <h4 class="modal-title">Edit Faktor Pemicu</h4>
 			      </div>
 			      <div class="modal-body">
 							<form class="form-horizontal" action='{{route('admin.master.resiko.edit')}}' method='post'>
@@ -156,17 +147,6 @@
 													<input id="nm_pemicu_resiko" type="text" class="form-control" name="nm_pemicu_resiko" required autofocus>
 											</div>
 									</div>
-									<div class="form-group">
-											<label for="jenis_pemicu" class="col-md-4 control-label">Jenis pemicu</label>
-
-											<div class="col-md-6">
-													<select id="jenis_pemicu" type="number" class="form-control" name="jenis_pemicu" required autofocus>
-											        <option value="1">Internal</option>
-											        <option value="2">External</option>
-											    </select>
-											</div>
-									</div>
-
 									<input type='hidden' name='id_master_resiko' id='id_master_resiko' value=''/>
 									<input class='btn btn-success' type='submit' value='Submit' />
 							</form>
@@ -186,7 +166,7 @@
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Add Master Resiko</h4>
+			        <h4 class="modal-title">Add Faktor Pemicu</h4>
 			      </div>
 			      <div class="modal-body">
 							<form class="form-horizontal" action='{{route('admin.master.resiko.add')}}' method='post'>
@@ -196,16 +176,6 @@
 
 											<div class="col-md-6">
 													<input id="nm_pemicu_resiko" type="text" class="form-control" name="nm_pemicu_resiko" required autofocus>
-											</div>
-									</div>
-									<div class="form-group">
-											<label for="jenis_pemicu" class="col-md-4 control-label">Jenis pemicu</label>
-
-											<div class="col-md-6">
-													<select id="jenis_pemicu" type="number" class="form-control" name="jenis_pemicu" required autofocus>
-											        <option value="1">Internal</option>
-											        <option value="2">External</option>
-											    </select>
 											</div>
 									</div>
 									<input class='btn btn-success' type='submit' value='Submit' />

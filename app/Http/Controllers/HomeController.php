@@ -70,7 +70,8 @@ class HomeController extends Controller
     public function showActionPlan()
     {
         $rs = RESIKO::orderBy('id_resiko')->get();
-        $data = ACTIONPLAN::join('resiko', 'action_plan.id_resiko', '=', 'resiko.id_resiko')
+        $data = ACTIONPLAN::orderBy('id_action_plan')
+            ->join('resiko', 'action_plan.id_resiko', '=', 'resiko.id_resiko')
             ->join('aspek_terdampak', 'resiko.id_aspek_terdampak', '=', 'aspek_terdampak.id_aspek_terdampak')
             ->get();
         return view('user.useractionplan', compact('data', 'rs'));

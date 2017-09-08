@@ -57,16 +57,13 @@
 					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
 					</a></li>
-					<li><a class="" href="{{route('admin.master.program')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Program
-					</a></li>
 					<li><a class="" href="{{route('admin.master.resiko')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Resiko
 					</a></li>
 				</ul>
 			</li>
 			<li class="active"><a href="{{route('admin.resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
-			<li><a href="{{route('admin.detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
+			<li><a href="{{route('admin.tindaklanjut')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Tindak Lanjut</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>

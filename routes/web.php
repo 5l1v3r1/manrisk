@@ -25,8 +25,8 @@ Route::post('/resiko/add', 'HomeController@addResiko')->name('resiko.add');
 Route::get('/findSkorDampak', 'HomeController@findSkorDampak')->name('findskordampak');
 Route::get('/findSkorKemungkinan', 'HomeController@findSkorKemungkinan')->name('findskorkemungkinan');
 
-Route::get('/actionplan', 'HomeController@showActionPlan')->name('actionplan');
-Route::post('/actionplan/add', 'HomeController@addActionPlan')->name('actionplan.add');
+Route::get('/tindaklanjut', 'HomeController@showActionPlan')->name('tindaklanjut');
+Route::post('/tindaklanjut/add', 'HomeController@addActionPlan')->name('tindaklanjut.add');
 
 Route::get('/chartdata', 'AdminController@chartdata')->name('chartdata');
 
@@ -59,7 +59,7 @@ Route::prefix('admin')->group(function(){
 
     Route::get('/resiko', 'AdminController@showResiko')->name('admin.resiko');
 
-    Route::get('/actionplan', 'AdminController@showActionPlan')->name('admin.actionplan');
+    Route::get('/tindaklanjut', 'AdminController@showActionPlan')->name('admin.tindaklanjut');
 
     Route::get('/detailprogram', 'AdminController@showDetailProgram')->name('admin.detailprogram');
 

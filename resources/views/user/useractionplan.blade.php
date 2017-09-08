@@ -43,7 +43,7 @@
 		<div class="divider"></div>
 		<ul class="nav menu">
 			<li><a href="{{route('resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
-			<li class="active"><a href="{{route('actionplan')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Tindak Lanjut</a></li>
+			<li class="active"><a href="{{route('tindaklanjut')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Tindak Lanjut</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -79,7 +79,7 @@
 					    <table cellpadding="0" cellspacing="0" border="0">
 					      <thead>
 					        <tr>
-										<th>ID Action Plan</th>
+										<th>ID</th>
 										<th>Resiko</th>
 										<th>Aspek Terdampak</th>
 										<th>Treatment</th>
@@ -101,7 +101,15 @@
 											<td>{{$d->nama_aspek_terdampak}}</td>
 											<td>{{$d->nama_action_plan}}</td>
 											<td>{{$d->waktu_pelaksanaan}}</td>
-											<td>{{$d->status_pelaksanaan}}</td>
+											<td>@if ($d->status_pelaksanaan==1)
+												Belum Terlaksana
+											@endif
+											@if ($d->status_pelaksanaan==2)
+												Sedang Dilaksanakan
+											@endif
+											@if ($d->status_pelaksanaan==3)
+												Sudah Terlaksana
+											@endif</td>
 											<td>{{$d->pic}}</td>
 											<td>{{$d->keterangan}}</td>
 										</tr>
@@ -120,10 +128,10 @@
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Tambah Action Plan</h4>
+			        <h4 class="modal-title">Tambah Tindak Lanjut</h4>
 			      </div>
 			      <div class="modal-body">
-							<form class="form-horizontal" action='{{route('actionplan.add')}}' method='post'>
+							<form class="form-horizontal" action='{{route('tindaklanjut.add')}}' method='post'>
 									{{ csrf_field() }}
 									<div class="form-group">
 											<label for="id_resiko" class="col-md-4 control-label">Resiko</label>
@@ -137,7 +145,7 @@
 											</div>
 									</div>
 									<div class="form-group">
-											<label for="nama_action_plan" class="col-md-4 control-label">Nama action plan</label>
+											<label for="nama_action_plan" class="col-md-4 control-label">Nama Tindak Lanjut</label>
 
 											<div class="col-md-6">
 													<input id="nama_action_plan" type="text"  class="form-control" name="nama_action_plan" required autofocus>
@@ -147,7 +155,7 @@
 											<label for="waktu_pelaksanaan" class="col-md-4 control-label">Waktu pelaksanaan</label>
 
 											<div class="col-md-6">
-													<input id="waktu_pelaksanaan" type="date" placeholder="yyyy-mm-dd" class="form-control" name="waktu_pelaksanaan" required autofocus>
+													<input id="waktu_pelaksanaan" type="text" placeholder="yyyy-mm-dd" class="form-control" name="waktu_pelaksanaan" required autofocus>
 											</div>
 									</div>
 									<div class="form-group">

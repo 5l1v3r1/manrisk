@@ -3,9 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Action Plan</title>
+	<title>Tindak Lanjut</title>
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/datepicker3.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/table.css') }}" rel="stylesheet" type="text/css">
 	<!--Custom Font-->
@@ -43,7 +44,7 @@
 		<ul class="nav menu">
 			<li><a href="{{route('admin.dashboard')}}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
 			<li><a href="{{route('admin.users')}}"><em class="fa fa-calendar">&nbsp;</em> Users</a></li>
-			<li class="parent active"><a data-toggle="collapse" href="#sub-item-1">
+			<li class="parent"><a data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-navicon">&nbsp;</em> Master Data <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
 				<ul class="children collapse" id="sub-item-1">
@@ -56,16 +57,13 @@
 					<li><a class="" href="{{route('admin.master.aspekterdampak')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Aspek Terdampak
 					</a></li>
-					<li><a class="" href="{{route('admin.master.program')}}">
-						<span class="fa fa-arrow-right">&nbsp;</span> Program
-					</a></li>
 					<li><a class="" href="{{route('admin.master.resiko')}}">
 						<span class="fa fa-arrow-right">&nbsp;</span> Resiko
 					</a></li>
 				</ul>
 			</li>
 			<li><a href="{{route('admin.resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
-			<li><a href="{{route('admin.detailprogram')}}"><em class="fa fa-info">&nbsp;</em> Detail Program</a></li>
+			<li class="active"><a href="{{route('admin.tindaklanjut')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Tindak Lanjut</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -85,13 +83,13 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Action Plan</li>
+				<li class="active">Tindak Lanjut</li>
 			</ol>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Action Plan</h1>
+				<h1 class="page-header">Tindak Lanjut</h1>
 			</div>
 		</div><!--/.row-->
 
@@ -102,8 +100,13 @@
 					      <thead>
 					        <tr>
 										<th>ID</th>
-										<th>Deskripsi Resiko</th>
-										<th>Nama Action Plan</th>
+										<th>Resiko</th>
+										<th>Aspek Terdampak</th>
+										<th>Treatment</th>
+										<th>Waktu Pelaksanaan</th>
+										<th>Status</th>
+										<th>PIC</th>
+										<th>Keterangan</th>
 					        </tr>
 					      </thead>
 					    </table>
@@ -114,84 +117,29 @@
 									@foreach ($data as $d)
 										<tr>
 											<td>{{$d->id_action_plan}}</td>
+											<td>{{$d->deskripsi_resiko}}</td>
+											<td>{{$d->nama_aspek_terdampak}}</td>
 											<td>{{$d->nama_action_plan}}</td>
-											<td>
-												<a data-toggle="modal" data-idk="{{$d->id_action_plan}}" href="#myModal">
-												  <i class="fa fa-xl fa-pencil-square-o"></i>
-												</a>
-											</td>
+											<td>{{$d->waktu_pelaksanaan}}</td>
+											<td>@if ($d->status_pelaksanaan==1)
+												Belum Terlaksana
+											@endif
+											@if ($d->status_pelaksanaan==2)
+												Sedang Dilaksanakan
+											@endif
+											@if ($d->status_pelaksanaan==3)
+												Sudah Terlaksana
+											@endif</td>
+											<td>{{$d->pic}}</td>
+											<td>{{$d->keterangan}}</td>
 										</tr>
 									@endforeach
 					      </tbody>
 					    </table>
 					  </div>
-						<br>
-						<a class="btn btn-success pull-right" data-toggle="modal" href="#add">Add</a>
 					</div>
 
 			</div><!--/.row-->
-
-			<div id="myModal" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Edit Action Plan</h4>
-			      </div>
-			      <div class="modal-body">
-							<form class="form-horizontal" action='{{route('admin.master.actionplan.edit')}}' method='post'>
-									{{ csrf_field() }}
-									<div class="form-group">
-											<label for="nama_action_plan" class="col-md-4 control-label">Nama action plan</label>
-
-											<div class="col-md-6">
-													<input id="nama_action_plan" type="text" class="form-control" name="nama_action_plan" required autofocus>
-											</div>
-									</div>
-
-									<input type='hidden' name='id_action_plan' id='id_action_plan' value=''/>
-									<input class='btn btn-success' type='submit' value='Submit' />
-							</form>
-
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			      </div>
-			    </div>
-
-			  </div>
-			</div>
-
-			<div id="add" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Add Action Plan</h4>
-			      </div>
-			      <div class="modal-body">
-							<form class="form-horizontal" action='{{route('admin.master.actionplan.add')}}' method='post'>
-									{{ csrf_field() }}
-									<div class="form-group">
-											<label for="nama_action_plan" class="col-md-4 control-label">Nama action plan</label>
-
-											<div class="col-md-6">
-													<input id="nama_action_plan" type="text" class="form-control" name="nama_action_plan" required autofocus>
-											</div>
-									</div>
-									<input class='btn btn-success' type='submit' value='Submit' />
-							</form>
-
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			      </div>
-			    </div>
-
-			  </div>
-			</div>
 
 			<br>
 			<div class="row">
@@ -219,13 +167,6 @@
 		  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
 		  $('.tbl-header').css({'padding-right':scrollWidth});
 		}).resize();
-
-		$('#myModal').on('show.bs.modal', function(e) {
-		    var idk = $(e.relatedTarget).data('idk');
-		    $(e.currentTarget).find('input[name="id_action_plan"]').val(idk);
-		});
-
-		$('#myModal').on('show.bs.modal');
 	</script>
 
 </body>

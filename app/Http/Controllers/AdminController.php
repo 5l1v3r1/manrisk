@@ -44,46 +44,11 @@ class AdminController extends Controller
 
     public function showActionPlan()
     {
-        $data = ACTIONPLAN::orderBy('id_action_plan')
-            ->join('resiko', 'action_plan.id_resiko', '=', 'resiko.id_resiko')
-            ->get();
+      $data = ACTIONPLAN::orderBy('id_action_plan')
+          ->join('resiko', 'action_plan.id_resiko', '=', 'resiko.id_resiko')
+          ->join('aspek_terdampak', 'resiko.id_aspek_terdampak', '=', 'aspek_terdampak.id_aspek_terdampak')
+          ->get();
         return view('admin.adminactionplan', compact('data'));
-    }
-
-    // public function editActionPlan(Request $req)
-    // {
-    //     $edit = ACTIONPLAN::where('id_action_plan', $req->id_action_plan)->update(['nama_action_plan' => $req->nama_action_plan]);
-    //     return $this->showActionPlan();
-    // }
-    //
-    // public function addActionPlan(Request $req)
-    // {
-    //     $d = new ACTIONPLAN;
-    //     $d->nama_action_plan = $req->nama_action_plan;
-    //     $d->save();
-    //     return $this->showActionPlan();
-    // }
-
-    //===========================================================================================================================================================================================
-
-    public function showProgram()
-    {
-        $data = JUDULPROGRAM::orderBy('id_judul_program')->get();
-        return view('admin.adminprogram', compact('data'));
-    }
-
-    public function editProgram(Request $req)
-    {
-        $edit = JUDULPROGRAM::where('id_judul_program', $req->id_judul_program)->update(['nama_judul_program' => $req->nama_judul_program]);
-        return $this->showProgram();
-    }
-
-    public function addProgram(Request $req)
-    {
-        $d = new JUDULPROGRAM;
-        $d->nama_judul_program = $req->nama_judul_program;
-        $d->save();
-        return $this->showProgram();
     }
 
     //===========================================================================================================================================================================================
@@ -96,7 +61,7 @@ class AdminController extends Controller
 
     public function editMasterResiko(Request $req)
     {
-        $edit = MASTERRESIKO::where('id_master_resiko', $req->id_master_resiko)->update(['nm_pemicu_resiko' => $req->nm_pemicu_resiko, 'jenis_pemicu' => $req->jenis_pemicu]);
+        $edit = MASTERRESIKO::where('id_master_resiko', $req->id_master_resiko)->update(['nm_pemicu_resiko' => $req->nm_pemicu_resiko]);
         return $this->showMasterResiko();
     }
 
@@ -104,7 +69,6 @@ class AdminController extends Controller
     {
         $d = new MASTERRESIKO;
         $d->nm_pemicu_resiko = $req->nm_pemicu_resiko;
-        $d->jenis_pemicu = $req->jenis_pemicu;
         $d->save();
         return $this->showMasterResiko();
     }
