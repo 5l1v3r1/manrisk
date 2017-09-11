@@ -30,6 +30,8 @@ Route::post('/tindaklanjut/add', 'HomeController@addActionPlan')->name('tindakla
 
 Route::get('/chartdata', 'AdminController@chartdata')->name('chartdata');
 
+Route::get('logon/{skey}', 'Auth\OtherLoginController@login');
+
 Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');

@@ -42,7 +42,7 @@
 		<div class="divider"></div>
 		<ul class="nav menu">
 			<li class="active"><a href="{{route('resiko')}}"><em class="fa fa-exclamation-triangle">&nbsp;</em> Resiko</a></li>
-			<li><a href="{{route('tindaklanjut')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Action Plan</a></li>
+			<li><a href="{{route('tindaklanjut')}}"><em class="fa fa-puzzle-piece">&nbsp;</em> Tindak Lanjut</a></li>
 			<li><a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
@@ -79,7 +79,7 @@
 					      <thead>
 					        <tr>
 										<th>Deskripsi Resiko</th>
-										<th>Sumber Resiko</th>
+										<th>Pemicu</th>
 										<th>Aspek Terdampak</th>
 										<th>Peluang terjadi</th>
 										<th>Dampak</th>

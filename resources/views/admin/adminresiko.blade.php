@@ -101,13 +101,13 @@
 					        <tr>
 										<th width="3%">ID</th>
 										<th>Deskripsi Resiko</th>
-										<th>Kemungkinan</th>
+										<th>Pemicu</th>
 										<th>Aspek Terdampak</th>
+										<th>Peluang terjadi</th>
 										<th>Dampak</th>
 										<th>Skor</th>
-										<th>Pemicu</th>
-										<th>Jenis</th>
-										<th>Created By</th>
+										<th>Kategori</th>
+										<th>Created by</th>
 					        </tr>
 					      </thead>
 					    </table>
@@ -119,15 +119,19 @@
 										<tr>
 											<td width="3%">{{$d->id_resiko}}</td>
 											<td>{{$d->deskripsi_resiko}}</td>
+											<td>{{$d->nm_pemicu_resiko}}</td>
 											<td>{{$d->nama_kemungkinan}}</td>
 											<td>{{$d->nama_aspek_terdampak}}</td>
 											<td>{{$d->nama_dampak}}</td>
 											<td>{{$d->total_skor}}</td>
-											<td>{{$d->nm_pemicu_resiko}}</td>
-											<td>@if ($d->jenis_pemicu==1)
-												Internal
-											@else
-												External
+											<td>@if ($d->total_skor<=3)
+												Rendah
+											@endif
+											@if ($d->total_skor>3&&$d->total_skor<=9)
+												Sedang
+											@endif
+											@if ($d->total_skor>9)
+												Tinggi
 											@endif</td>
 											<td>{{$d->created_by}}</td>
 										</tr>
