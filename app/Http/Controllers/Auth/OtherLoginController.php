@@ -15,6 +15,7 @@ class OtherLoginController extends Controller
     }
 
     public function login(Request $request){
+      hahahahah
       if (Auth::guard('other')->attempt(['username' => $request->username], $request->remember)) {
         return redirect()->intended(route('admin.dashboard'));
       }
