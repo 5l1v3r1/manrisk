@@ -107,6 +107,7 @@
 										<th>Status</th>
 										<th>PIC</th>
 										<th>Keterangan</th>
+										<th>Created By</th>
 					        </tr>
 					      </thead>
 					    </table>
@@ -132,6 +133,7 @@
 											@endif</td>
 											<td>{{$d->pic}}</td>
 											<td>{{$d->keterangan}}</td>
+											<td>{{$d->created_by}}</td>
 										</tr>
 									@endforeach
 					      </tbody>

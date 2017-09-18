@@ -88,6 +88,11 @@ class AdminController extends Controller
 
     }
 
+    public function addUser(Request $req)
+    {
+        # code...
+    }
+
     //===========================================================================================================================================================================================
 
     public function showKemungkinan()

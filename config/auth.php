@@ -46,11 +46,6 @@ return [
             'provider' => 'admins',
         ],
 
-        'other' => [
-            'driver' => 'session',
-            'provider' => 'others',
-        ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -59,11 +54,6 @@ return [
         'admin-api' => [
             'driver' => 'token',
             'provider' => 'admins',
-        ],
-
-        'other-api' => [
-            'driver' => 'token',
-            'provider' => 'others',
         ],
     ],
 
@@ -93,11 +83,6 @@ return [
         'admins' => [
             'driver' => 'oracle',
             'model' => App\ADMIN::class,
-        ],
-
-        'others' => [
-            'driver' => 'oracle',
-            'model' => App\OTHER::class,
         ],
 
         // 'users' => [

@@ -13,11 +13,9 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
-
-//Route::get('/resiko', 'HomeController@index')->name('home');
 
 Route::get('/resiko', 'HomeController@index')->name('resiko');
 Route::post('/resiko/add', 'HomeController@addResiko')->name('resiko.add');
@@ -30,7 +28,8 @@ Route::post('/tindaklanjut/add', 'HomeController@addActionPlan')->name('tindakla
 
 Route::get('/chartdata', 'AdminController@chartdata')->name('chartdata');
 
-Route::get('logon/{skey}', 'Auth\OtherLoginController@login');
+Route::get('logon/{skey}', 'Auth\AdminLoginController@logon');
+Route::get('userlogon/{skey}', 'Auth\UserLoginController@logon');
 
 Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
