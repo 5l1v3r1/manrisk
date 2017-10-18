@@ -33,16 +33,16 @@ class AdminLoginController extends Controller
 
     public function logon($skey){
         date_default_timezone_set("Asia/Jakarta");
-        $i=strpos($skey, 'l');
+        $i=strpos($skey, 'lll');
         $nip=substr($skey, 0, $i);
-  	    $key = $nip."l".md5(date("Ymd").substr($nip,6).date("hi"));
+  	    $key = $nip."lll".md5(date("Ymd").substr($nip,6).date("h"));
         if($skey==$key){
             if (Auth::guard('admin')->attempt(['username' => $nip, 'password' => '123456'])) {
                 return redirect()->intended(route('admin.dashboard'));
             }
         }
         else{
-            echo "fail";
+            echo "<h1>ERROR</h1><strong>Key is not valid.</strong>";
         }
     }
 }

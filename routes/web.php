@@ -28,15 +28,18 @@ Route::post('/tindaklanjut/add', 'HomeController@addActionPlan')->name('tindakla
 
 Route::get('/chartdata', 'AdminController@chartdata')->name('chartdata');
 
-Route::get('logon/{skey}', 'Auth\AdminLoginController@logon');
-Route::get('userlogon/{skey}', 'Auth\UserLoginController@logon');
+Route::get('check/{skey}', 'Auth\LoginController@check');
+Route::get('adminlogon/{skey}', 'Auth\AdminLoginController@logon')->name('adminlogon');
+Route::get('userlogon/{skey}', 'Auth\UserLoginController@logon')->name('userlogon');
 
 Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 
     Route::get('/users', 'AdminController@showUsers')->name('admin.users');
-    Route::post('/users', 'AdminController@deleteUser')->name('admin.users.delete');
+    Route::post('/users/add', 'AdminController@addUser')->name('admin.users.add');
+	Route::post('/users/edit', 'AdminController@editUser')->name('admin.users.edit');
+	Route::post('/users/delete', 'AdminController@deleteUser')->name('admin.users.delete');
 
     Route::get('/master/kemungkinan', 'AdminController@showKemungkinan')->name('admin.master.kemungkinan');
     Route::post('/master/kemungkinan', 'AdminController@editKemungkinan')->name('admin.master.kemungkinan.edit');

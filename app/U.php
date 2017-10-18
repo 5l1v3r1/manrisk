@@ -9,7 +9,7 @@ use Yajra\Oci8\Eloquent\OracleEloquent as Eloquent;
 class USER extends Authenticatable
 {
     use Notifiable;
-    protected $table = 'USERS';
+    protected $table = 'U';
     public $timestamps = false;
     protected $primaryKey = 'username';
     public $incrementing = false;
@@ -20,7 +20,7 @@ class USER extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'ID_UNIT_KERJA', 'IS_ACTIVE', 'password',
+        'username','email', 'password',
     ];
 
     /**

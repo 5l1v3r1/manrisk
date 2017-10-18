@@ -11,6 +11,7 @@ use App\MASTERRESIKO;
 use App\MDAMPAK;
 use App\ASPEKTERDAMPAK;
 use App\MKEMUNGKINANTERJADI;
+use App\UNITKERJA;
 
 class AdminController extends Controller
 {
@@ -77,20 +78,27 @@ class AdminController extends Controller
 
     public function showUsers()
     {
+		$uk = UNITKERJA::orderBy('id_unit_kerja')->get();
         $data = USER::all();
-        return view('admin.adminuser', compact('data'));
+        return view('admin.adminuser', compact('data', 'uk'));
     }
 
     public function deleteUser(Request $req)
     {
-        $delete = USER::where('username', $req->username)->delete();
+        $delete = USER::where('username', $req->username)->update(['is_active' => 'n']);
         return $this->showUsers();
 
     }
 
     public function addUser(Request $req)
     {
-        # code...
+        
+    }
+	
+	public function editUser(Request $req)
+    {
+        $edit = USER::where('username', $req->username)->update(['username' => $req->newusername, 'id_unit_kerja' => $req->id_unit_kerja]);
+		return $this->showUsers();
     }
 
     //===========================================================================================================================================================================================

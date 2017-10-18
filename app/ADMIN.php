@@ -12,7 +12,7 @@ class ADMIN extends Authenticatable
     protected $table = 'ADMINS';
     protected $guard = 'admin';
     public $timestamps = false;
-    protected $primaryKey = 'email';
+    protected $primaryKey = 'username';
     public $incrementing = false;
 
     /**
@@ -21,7 +21,7 @@ class ADMIN extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username','email', 'password',
+        'username', 'password',
     ];
 
     /**

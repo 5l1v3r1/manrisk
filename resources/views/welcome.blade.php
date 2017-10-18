@@ -66,16 +66,33 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/resiko') }}">Resiko</a>
-                        <a href="{{ url('/tindaklanjut') }}">Tindak Lanjut</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                    @endauth
-                </div>
-            @endif
+			<div class="top-right links">
+				@if (Auth::guard('admin')->check())
+					<a href="{{ url('/admin') }}">Dashboard</a>
+					<a href="{{ route('logout') }}"
+						onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
+						Logout
+					</a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						{{ csrf_field() }}
+					</form>
+                    
+                @elseif (Auth::guard('web')->check())
+					<a href="{{ url('/resiko') }}">Resiko</a>
+					<a href="{{ url('/tindaklanjut') }}">Tindak Lanjut</a>
+					<a href="{{ route('logout') }}"
+						onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();"><em class="fa fa-power-off">&nbsp;</em>
+						Logout
+					</a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						{{ csrf_field() }}
+					</form>
+				@else
+                    <a href="{{ route('login') }}">Login</a>
+                @endif
+			</div>
 
             <div class="content">
                 <div class="title m-b-md">

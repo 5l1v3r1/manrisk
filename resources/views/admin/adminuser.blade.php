@@ -99,9 +99,11 @@
 					    <table cellpadding="0" cellspacing="0" border="0">
 					      <thead>
 					        <tr>
-										<th>Username</th>
-										<th>Email</th>
-										<th>Delete</th>
+								<th>Username</th>
+								<th>Unit Kerja</th>
+								<th>Status</th>
+								<th>Edit</th>
+								<th>Delete</th>
 					        </tr>
 					      </thead>
 					    </table>
@@ -112,13 +114,24 @@
 									@foreach ($data as $d)
 										<tr>
 											<td>{{$d->username}}</td>
-											<td>{{$d->email}}</td>
+											<td>{{$d->id_unit_kerja}}</td>
+											<td>@if ($d->is_active == "y")
+													aktif
+												@else
+													tidak aktif
+												@endif
+											</td>
+											<td>
+												<a data-toggle="modal" data-uname="{{$d->username}}" href="#myModal">
+												  <i class="fa fa-xl fa-pencil-square-o"></i>
+												</a>
+											</td>
 											<td class="action-buttons">
 												<form action='{{route('admin.users.delete')}}' method='post'>
-                            {{ csrf_field() }}
-                            <input type='hidden' name='username' value='{{ $d->username }}'/>
-														<button type="submit" style="border:none; background-color: transparent;"><i class="fa fa-xl fa-trash"></i></button>
-                        </form>
+													{{ csrf_field() }}
+													<input type='hidden' name='username' value='{{ $d->username }}'/>
+													<button type="submit" style="border:none; background-color: transparent;"><i class="fa fa-xl fa-trash"></i></button>
+												</form>
 											</td>
 										</tr>
 									@endforeach
@@ -128,7 +141,49 @@
 					</div>
 
 			</div><!--/.row-->
+			
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Edit User</h4>
+			      </div>
+			      <div class="modal-body">
+						<form class="form-horizontal" action='{{route('admin.users.edit')}}' method='post'>
+							{{ csrf_field() }}
+							<div class="form-group">
+								<label for="newusername" class="col-md-4 control-label">Username</label>
+								<div class="col-md-6">
+									<input id="newusername" type="text" class="form-control" name="newusername" value="" required autofocus>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="unitkerja" class="col-md-4 control-label">Unit Kerja</label>
+								<div class="col-md-6">
+									<select id="id_unit_kerja" type="number" class="form-control" name="id_unit_kerja" required autofocus>
+										@foreach ($uk as $uk)
+											<option value="{{$uk->id_unit_kerja}}">{{$uk->id_unit_kerja}}. {{$uk->nm_unit_kerja}} ({{$uk->nm_singkatan_unit}})</option>
+										@endforeach
+									</select>
+								</div>
+							</div>
+							<input type='hidden' name='username' id='username' value=''/>
+							<input class='btn btn-success' type='submit' value='Submit' />
+						</form>
+
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div>
+			
 		<br>
+		
 			<div class="row">
 				<div class="col-sm-12">
 					<p class="back-link">Risk Mangement <a href="https://www.unair.ac.id">Airlangga University</a></p>
@@ -159,6 +214,18 @@
 		  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
 		  $('.tbl-header').css({'padding-right':scrollWidth});
 		}).resize();
+		
+		$('#myModal').on('show.bs.modal', function(e) {
+		    var uname = $(e.relatedTarget).data('uname');
+		    $(e.currentTarget).find('input[name="newusername"]').val(uname);
+		});
+		
+		$('#myModal').on('show.bs.modal', function(e) {
+		    var uname = $(e.relatedTarget).data('uname');
+		    $(e.currentTarget).find('input[name="username"]').val(uname);
+		});
+		
+		$('#add').on('show.bs.modal');
 	</script>
 
 </body>

@@ -15,6 +15,16 @@
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<style>
+		.css-serial {
+		  counter-reset: serial-number;  /* Set the serial number counter to 0 */
+		}
+
+		.css-serial td:first-child:before {
+		  counter-increment: serial-number;  /* Increment the serial number counter */
+		  content: counter(serial-number);  /* Display the counter */
+		}
+	</style>
 
 </head>
 <body>
@@ -96,10 +106,10 @@
 		<div class="row">
 					<div class="col-sm-12">
 						<div class="tbl-header">
-					    <table cellpadding="0" cellspacing="0" border="0">
+					    <table cellpadding="0" cellspacing="0" border="0" class="css-serial">
 					      <thead>
 					        <tr>
-										<th width="3%">ID</th>
+										<th width="3%">#</th>
 										<th>Deskripsi Resiko</th>
 										<th>Pemicu</th>
 										<th>Aspek Terdampak</th>
@@ -113,11 +123,11 @@
 					    </table>
 					  </div>
 					  <div class="tbl-content">
-					    <table cellpadding="0" cellspacing="0" border="0">
+					    <table cellpadding="0" cellspacing="0" border="0" class="css-serial">
 					      <tbody>
 									@foreach ($data as $d)
 										<tr>
-											<td width="3%">{{$d->id_resiko}}</td>
+											<td width="3%"></td>
 											<td>{{$d->deskripsi_resiko}}</td>
 											<td>{{$d->nm_pemicu_resiko}}</td>
 											<td>{{$d->nama_kemungkinan}}</td>
